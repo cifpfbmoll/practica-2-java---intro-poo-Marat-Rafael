@@ -186,7 +186,7 @@ public class Libro {
     // Buscar libro por ISBN. Pedirá al usuario un ISBN, lo buscará en la lista que recibirá como parámetro el método. 
     // En caso de encontrarlo devolverá la posición en la que se encuentra, en caso contrario devolverá -1.
     public static int buscarLibroISBN(ArrayList<Libro> listaLibros) {
-
+        boolean encontrado = false;
         System.out.println("Escribe ISBN para buscar: ");
         String isbn = sc.nextLine();
         int index = -1;
@@ -196,9 +196,15 @@ public class Libro {
             if (listaLibros.get(i).getISBN().equals(isbn)) {
                 // guardamos en index posicion
                 index = i;
+                encontrado = true;
             }
         }
-        System.out.println(listaLibros.get(index).toString());
+        if (encontrado) {
+            System.out.println(listaLibros.get(index).toString());
+        }else{
+            System.out.println("No encontrado libro con ISBN indicado");
+        }
+        
         return index;
     }// fin metodo buscarLibro
 
@@ -208,6 +214,7 @@ public class Libro {
     Mostrará cualquier libro que contenga la cadena buscada.
      */
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
+        boolean encontrado = false;
         //creamos nuevo objeto vacio libro
         Libro libro;
         //pedimos titulo para buscar
@@ -225,8 +232,13 @@ public class Libro {
                 libro = listaLibros.get(i);
                 //añadimos a la lista
                 listaLibrosEncontrados.add(libro);
+                encontrado = true;
+                
             }
         }//fin for buscar libro y añadir a lista
+        if (!encontrado) {
+            System.out.println("No encontrado este titulo");
+        }
 
         // 'for' mostramos libros encontrados, que tenemos guardados en array
         for (int i = 0; i < listaLibrosEncontrados.size(); i++) {
