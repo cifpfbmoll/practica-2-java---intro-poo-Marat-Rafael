@@ -17,7 +17,8 @@ public class Libro {
     private static Scanner sc = new Scanner(System.in);
 
     //atributos
-    private static int contadorLibros;
+    
+    private static int contadorLibros; // contador  global de todos los libros
     // estatico pertenece a todo la clase
 
     private String ISBN;
@@ -30,12 +31,12 @@ public class Libro {
     //constructores
     // constructor vacio
     public Libro() {
-        contadorLibros++;
+        contadorLibros++; // contador global de libros
     }
 
     //constructor con todos atributos
     public Libro(String ISBN, String titulo, String autor, String editorial, int numCopias, int numCopiasDisponibles) {
-        contadorLibros++;
+        contadorLibros++; // contador global de todos libros
 
         this.ISBN = ISBN;
         this.titulo = titulo;
@@ -48,14 +49,14 @@ public class Libro {
 
     //constructor copia
     public Libro(Libro libro) {
-        contadorLibros++;
+        contadorLibros++; // contador global de todos libros
+        
         this.ISBN = libro.ISBN;
         this.titulo = libro.titulo;
         this.autor = libro.autor;
         this.editorial = libro.editorial;
         this.numCopias = libro.numCopias;
-        this.numCopiasDisponible = libro.numCopiasDisponible;
-        
+        this.numCopiasDisponible = libro.numCopiasDisponible;       
     }
 
     // metodos getter y setter
@@ -124,9 +125,7 @@ public class Libro {
     @Override
     public String toString() {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numCopias=" + numCopias + ", numCopiasDisponible=" + numCopiasDisponible + '}';
-    }
-
-    
+    }  
 
     // resto de  metodos
     /*
@@ -158,7 +157,7 @@ public class Libro {
 
         listaLibros.add(nuevoLibro);
 
-    }// fin anadir nuevolibro
+    }// fin metodo anadir nuevolibro
 
     /*
     Eliminar libro
@@ -242,5 +241,4 @@ public class Libro {
 /*
     static (pertenece a la clase)  vs instancia( pertenece al objeto creado)
    
-
  */

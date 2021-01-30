@@ -81,14 +81,14 @@ public class Biblioteca {
 
     // resto de metodos
     //Mostrar libros. Imprimirá por pantalla toda la lista de libros. (método instancia)
-    public void mostrarTodosLibros(ArrayList <Libro> listaLibros) {
+    public void mostrarTodosLibros(ArrayList<Libro> listaLibros) {
         for (int i = 0; i < listaLibros.size(); i++) {
             System.out.println(listaLibros.get(i));
         }
     }
 
     //Mostrar libros disponibles. Solo imprime la lista de los libros disponibles. (método instancia)
-    public void mostrarLibrosDispinibles(ArrayList <Libro> listaLibros) {
+    public void mostrarLibrosDispinibles(ArrayList<Libro> listaLibros) {
         //creamos un objeto de libro
         Libro libro;
         //recorremos array
@@ -102,5 +102,4 @@ public class Biblioteca {
             }
         }
     }
-
 }
