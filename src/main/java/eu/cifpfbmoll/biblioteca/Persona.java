@@ -114,72 +114,128 @@ public class Persona {
 
         // lo almacenamos en el array
         listaPersonas.add(persona);
+        System.out.println("Añadimos a la lista del personal: ");
+        System.out.println(persona.toString());
 
     }// fin metodo aladirPersonal
 
     // metodo para eliminar objeto Persona de la listaPersonas de la clase Biblioteca
     // para esto tenemos que pasar como parametro listaPersonas
     public static void eliminarPersonal(ArrayList<Persona> listaPersonal) {
-
-        short opcion;// opcion para switch
-        boolean salir = false;
+        String nom = "";
+        int opcion;// opcion para switch
+        boolean salir = false; // para poder salir
+        boolean encontrado = false; // para ver si  hemos encontrado la persona
+        
+        //nuevo objeto Persona, aqui guardamos la  persona si encontramos, para mostrar despues
+        Persona p = new Persona(); 
 
         //Para eliminar el personal de la lista primero tenemos que buscar lo en la lista
         do {
-
-            System.out.println("Buscamos persona: \n1.Nombre: \n2.Apellido: \n3.NIF: \n4.Cancelar");
-            opcion = sc.nextShort();
+            System.out.println("****************************************");
+            System.out.println("Borrar persona de la lista del personal");
+            System.out.println("Buscamos si esta en la lista por: ");
+            System.out.println("    1. Nombre: ");
+            System.out.println("    2. Apellido: ");
+            System.out.println("    3. NIF: ");
+            System.out.println("    4. Cancelar ");
+            System.out.println("****************************************");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            System.out.println("");
 
             switch (opcion) {
-                case 1:
-                    System.out.println("Introduce nombre: ");
-                    String nombre = sc.nextLine();
+                case 1:// por nombre
+                    System.out.println("Introduce nombre que buscamos: ");
+                    nom = sc.nextLine();
+                    //sc.nextLine();
+                    
+
                     // recorremos array
                     for (int i = 0; i < listaPersonal.size(); i++) {
+
                         //acedemos a getNombre, si es igual al introducido por usuario
-                        if (listaPersonal.get(i).getNombre().equals(nombre)) {
-                            listaPersonal.remove(i);
+                        if (listaPersonal.get(i).getNombre().equalsIgnoreCase(nom)) {
+                            p = listaPersonal.get(i); //guardamos persona pada despues poder mostrar
+                            listaPersonal.remove(i);    //borramos de lalista                                                  
+                            encontrado = true;
                         }
                     }
+                    if (encontrado) {    // si encontrado = true
+                        System.out.print("Eliminado con exito ");
+                        System.out.println(p.toString());//mostramos a quen hemos borrado
+
+                    } else {
+                        //si no se encuentra este nombre muestra mensaje
+                        System.out.println("La persona con el nombre " + nom + " no se encuentra en la lista");
+                    }
+
                     break;
 
-                case 2:
+                case 2: // por apellido
 
-                    System.out.println("Introduce apellido: ");
-                    String apellido = sc.nextLine();
+                    System.out.println("Introduce apellido que buscamos: ");
+                    String apell= sc.nextLine();
                     // recorremos array
                     for (int i = 0; i < listaPersonal.size(); i++) {
                         //acedemos a getApellido, si es igual al introducido por usuario
-                        if (listaPersonal.get(i).getApellido().equals(apellido)) {
+                        if (listaPersonal.get(i).getApellido().equalsIgnoreCase(apell)) {
+                            p = listaPersonal.get(i); // guardamos la persona que emos encontrado
                             listaPersonal.remove(i);
+                            encontrado = true;
                         }
+                    }
+                    if (encontrado) {    // si encontrado = true
+                        System.out.print("Eliminado con exito ");
+                        System.out.println(p.toString());//mostramos a quen hemos borrado
+
+                    } else {
+                        //si no se encuentra este nombre muestra mensaje
+                        System.out.println("La persona con el nombre " + apell + " no se encuentra en la lista");
                     }
 
                     break;
 
-                case 3:
+                case 3:// buscamos por nif
 
-                    System.out.println("Introduce NIF: ");
+                    System.out.println("Introduce NIF que buscamos: ");
                     String nif = sc.nextLine();
                     // recorremos array
                     for (int i = 0; i < listaPersonal.size(); i++) {
                         //acedemos a getNIF, si es igual al introducido por usuario
-                        if (listaPersonal.get(i).getNIF().equals(nif)) {
-                            listaPersonal.remove(i);
+                        if (listaPersonal.get(i).getNIF().equalsIgnoreCase(nif)) {
+                            p = listaPersonal.get(i); // guardamos la persona en variable
+                            listaPersonal.remove(i);    // borramos de la lista
+                            encontrado = true; //encontrado
                         }
+                    }
+                    if (encontrado) {    // si encontrado = true
+                        System.out.print("Eliminado con exito ");
+                        System.out.println(p.toString());//mostramos a quen hemos borrado
+
+                    } else {
+                        //si no se encuentra este nombre muestra mensaje
+                        System.out.println("La persona con el nombre " + nif + " no se encuentra en la lista");
                     }
 
                     break;
                 case 4:
                     salir = true;
                     break;
-                    
+
                 default:
                     System.out.println("Opciones disponibles de 1 a 4");
             }
         } while (!salir);
         // fin do-while
 
+    }// fin metodo borrarPersonal
+    
+    public static void mostrarPersonal(ArrayList <Persona> listaPersonal){
+        for (int i = 0; i < listaPersonal.size(); i++) {
+            System.out.println(listaPersonal.get(i).toString());
+            
+        }
     }
 
 }
