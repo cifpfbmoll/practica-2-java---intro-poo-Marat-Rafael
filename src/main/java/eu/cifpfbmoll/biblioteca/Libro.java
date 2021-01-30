@@ -13,11 +13,12 @@ import java.util.Scanner;
 
 public class Libro {
 
-    //declaramos objeto de escaner 'sc'
+    //declaramos objeto static de escaner 'sc'
     private static Scanner sc = new Scanner(System.in);
 
     //atributos
-    private static int contadorLibros;// estatico pertenece a todo la clase
+    private static int contadorLibros;
+    // estatico pertenece a todo la clase
 
     private String ISBN;
     private String titulo;
@@ -33,14 +34,17 @@ public class Libro {
     }
 
     //constructor con todos atributos
-    public Libro(String ISBN, String titulo, String autor, String editorial) {
+    public Libro(String ISBN, String titulo, String autor, String editorial, int numCopias, int numCopiasDisponibles) {
         contadorLibros++;
 
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
         this.editorial = editorial;
+        this.numCopias = numCopias;
+        this.numCopiasDisponible = numCopiasDisponibles;
     }
+    
 
     //constructor copia
     public Libro(Libro libro) {
@@ -49,6 +53,9 @@ public class Libro {
         this.titulo = libro.titulo;
         this.autor = libro.autor;
         this.editorial = libro.editorial;
+        this.numCopias = libro.numCopias;
+        this.numCopiasDisponible = libro.numCopiasDisponible;
+        
     }
 
     // metodos getter y setter
@@ -116,8 +123,10 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + '}';
+        return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numCopias=" + numCopias + ", numCopiasDisponible=" + numCopiasDisponible + '}';
     }
+
+    
 
     // resto de  metodos
     /*
@@ -145,6 +154,7 @@ public class Libro {
 
         System.out.println("Copias disponibles del libro: ");
         nuevoLibro.setNumCopiasDisponible(sc.nextInt());
+        sc.nextLine();
 
         listaLibros.add(nuevoLibro);
 
@@ -189,6 +199,7 @@ public class Libro {
                 index = i;
             }
         }
+        System.out.println(listaLibros.get(index).toString());
         return index;
     }// fin metodo buscarLibro
 
@@ -198,6 +209,7 @@ public class Libro {
     Mostrará cualquier libro que contenga la cadena buscada.
      */
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
+        //creamos nuevo objeto vacio libro
         Libro libro;
         //pedimos titulo para buscar
         System.out.println("Escribe un titulo para buscar: ");
@@ -208,20 +220,21 @@ public class Libro {
 
         // recorremos array de libros que nos pasa como parametro
         for (int i = 0; i < listaLibros.size(); i++) {
-            // si el titulo es equals a getTitulo
+            // si el titulo del usuario es equals a getTitulo
             if (listaLibros.get(i).getTitulo().equals(titulo)) {
+                //lo guardamos en objeto libro
                 libro = listaLibros.get(i);
+                //añadimos a la lista
                 listaLibrosEncontrados.add(libro);
             }
-        }//fin for buscar libro y añadir  a lista
+        }//fin for buscar libro y añadir a lista
 
+        // 'for' mostramos libros encontrados, que tenemos guardados en array
         for (int i = 0; i < listaLibrosEncontrados.size(); i++) {
             System.out.println(listaLibrosEncontrados.get(i).toString());
         }// fin mostrar libros de la lista que emos encontrado    
 
-    }//fin buscarLibroTitulo
-
-
+    }//fin metodo buscarLibroTitulo
 
 }// fin clase
 
@@ -230,4 +243,4 @@ public class Libro {
     static (pertenece a la clase)  vs instancia( pertenece al objeto creado)
    
 
-*/
+ */
