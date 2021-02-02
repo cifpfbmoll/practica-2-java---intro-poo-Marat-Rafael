@@ -25,10 +25,11 @@ public class AppBiblioteca {
     public static void main(String[] args) {
 
         
+        // declaramos lista del personal para añadir dentro de la biblioteca
         ArrayList<Persona> listaPersonal1 = new ArrayList<>();       
-        //creamos lista de libros
+        //creamos lista de libros para añadir a la biblioteca
         ArrayList<Libro> listaLibros1 = new ArrayList<>();
-        //creamos biblioteca 
+        //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1
         Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll",listaLibros1,listaPersonal1);
         
         
