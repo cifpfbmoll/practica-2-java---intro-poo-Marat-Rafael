@@ -16,6 +16,10 @@ package eu.cifpfbmoll.biblioteca;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ * @author administrador
+ */
 public class Persona {
 
     //declaramos objeto static de escaner 'sc'
@@ -29,10 +33,22 @@ public class Persona {
 
     //constructores
     //constructor vacio
+
+    /**
+     *
+     */
     public Persona() {
     }
 
     //constructor con todos atributos
+
+    /**
+     *
+     * @param nombre
+     * @param apellido
+     * @param NIF
+     * @param contrasenia
+     */
     public Persona(String nombre, String apellido, String NIF, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -41,6 +57,10 @@ public class Persona {
     }
 
     //constructor copia   
+    /**
+     *
+     * @param persona
+     */
     public Persona(Persona persona) {
         this.nombre = persona.nombre;
         this.apellido = persona.apellido;
@@ -49,35 +69,69 @@ public class Persona {
     }
 
     //metodos getter y setter
+
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getApellido() {
         return apellido;
     }
 
+    /**
+     *
+     * @param apellido
+     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNIF() {
         return NIF;
     }
 
+    /**
+     *
+     * @param NIF
+     */
     public void setNIF(String NIF) {
         this.NIF = NIF;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getContrasenia() {
         return contrasenia;
     }
 
     //contraseña que debe tener al menos 8 caracteres.
+
+    /**
+     *
+     * @param contrasenia
+     */
     public void setContraseña(String contrasenia) {
         while (contrasenia.length() < 8) {
             System.out.println("Contraseña debe ser al menos de 8 caracteres");
@@ -95,6 +149,11 @@ public class Persona {
     //Crea los métodos que consideres oportunos para poder añadir/eliminar personas que gestionarán la biblioteca (bibliotecarios).
     // metodo para añadir objeto Persona en listaPersonas del clase Biblioteca
     // para esto tenemos que pasar como parametro listaPersonas
+
+    /**
+     *
+     * @param listaPersonas
+     */
     public static void anadirPersonalBiblioteca(ArrayList<Persona> listaPersonas) {
 
         System.out.println("Nombre: ");
@@ -121,6 +180,11 @@ public class Persona {
 
     // metodo para eliminar objeto Persona de la listaPersonas de la clase Biblioteca
     // para esto tenemos que pasar como parametro listaPersonas
+
+    /**
+     *
+     * @param listaPersonal
+     */
     public static void eliminarPersonal(ArrayList<Persona> listaPersonal) {
         String nom = "";
         int opcion;// opcion para switch
@@ -231,6 +295,10 @@ public class Persona {
 
     }// fin metodo borrarPersonal
     
+    /**
+     *
+     * @param listaPersonal
+     */
     public static void mostrarPersonal(ArrayList <Persona> listaPersonal){
         for (int i = 0; i < listaPersonal.size(); i++) {
             System.out.println(listaPersonal.get(i).toString());

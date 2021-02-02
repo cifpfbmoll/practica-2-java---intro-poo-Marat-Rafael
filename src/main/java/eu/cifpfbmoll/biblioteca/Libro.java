@@ -11,6 +11,10 @@ package eu.cifpfbmoll.biblioteca;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Marat Rafael
+ */
 public class Libro {
 
     //declaramos objeto static de escaner 'sc'
@@ -28,13 +32,26 @@ public class Libro {
     private int numCopias;
     private int numCopiasDisponible;
 
-    //constructores
-    // constructor vacio
+    //CONSTRUCTORES
+
+    /**
+     * constructor vacio
+     */
     public Libro() {
         contadorLibros++; // contador global de libros
     }
 
     //constructor con todos atributos
+
+    /**
+     *
+     * @param ISBN
+     * @param titulo
+     * @param autor
+     * @param editorial
+     * @param numCopias
+     * @param numCopiasDisponibles
+     */
     public Libro(String ISBN, String titulo, String autor, String editorial, int numCopias, int numCopiasDisponibles) {
         contadorLibros++; // contador global de todos libros
 
@@ -48,6 +65,11 @@ public class Libro {
     
 
     //constructor copia
+
+    /**
+     *
+     * @param libro
+     */
     public Libro(Libro libro) {
         contadorLibros++; // contador global de todos libros
         
@@ -60,51 +82,101 @@ public class Libro {
     }
 
     // metodos getter y setter
+
+    /**
+     *
+     * @return
+     */
     public static int getContadorLibros() {
         return contadorLibros;
     }
 
+    /**
+     *
+     * @param contadorLibros
+     */
     public static void setContadorLibros(int contadorLibros) {
         Libro.contadorLibros = contadorLibros;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getISBN() {
         return ISBN;
     }
 
+    /**
+     *
+     * @param ISBN
+     */
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     *
+     * @param titulo
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAutor() {
         return autor;
     }
 
+    /**
+     *
+     * @param autor
+     */
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEditorial() {
         return editorial;
     }
 
+    /**
+     *
+     * @param editorial
+     */
     public void setEditorial(String editorial) {
         this.editorial = editorial;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumCopias() {
         return numCopias;
     }
 
     // numero de copias inicial no puede ser menos que 1
+
+    /**
+     *
+     * @param numCopias
+     */
     public void setNumCopias(int numCopias) {
         while (numCopias < 1) {
             System.out.println("Numero de copias inicial no puede ser menos que 1 ");
@@ -113,10 +185,18 @@ public class Libro {
         this.numCopias = numCopias;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumCopiasDisponible() {
         return numCopiasDisponible;
     }
 
+    /**
+     *
+     * @param numCopiasDisponible
+     */
     public void setNumCopiasDisponible(int numCopiasDisponible) {
         this.numCopiasDisponible = numCopiasDisponible;
     }
@@ -132,6 +212,12 @@ public class Libro {
      Añadir libro. Solicitará los datos para crear un libro 
     y añadirá dicho libro a una lista de libros que recibirá como parámetro el método.
      */
+
+    /**
+     *
+     * @param listaLibros
+     */
+
     public static void anadirLibro(ArrayList<Libro> listaLibros) {
         // creamos objeto vacio 
         Libro nuevoLibro = new Libro();
@@ -159,12 +245,19 @@ public class Libro {
 
     }// fin metodo anadir nuevolibro
 
+    
     /*
     Eliminar libro
     . Solicitará al usuario un ISBN , lo buscará y lo eliminará de la lista 
     que recibirá como parámetro el método.
     No se puede eliminar un libro que tiene reservas.
      */
+
+    /**
+     *
+     * @param listaLibros
+     */
+
     public static void eliminarLibro(ArrayList<Libro> listaLibros) {
         System.out.println("Escribe ISBN para borrar libro de la lista");
         String isbn = sc.nextLine();
@@ -185,6 +278,12 @@ public class Libro {
 
     // Buscar libro por ISBN. Pedirá al usuario un ISBN, lo buscará en la lista que recibirá como parámetro el método. 
     // En caso de encontrarlo devolverá la posición en la que se encuentra, en caso contrario devolverá -1.
+
+    /**
+     *
+     * @param listaLibros
+     * @return
+     */
     public static int buscarLibroISBN(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
         System.out.println("Escribe ISBN para buscar: ");
@@ -213,6 +312,12 @@ public class Libro {
     lo buscará en la lista que recibirá como parámetro el método. 
     Mostrará cualquier libro que contenga la cadena buscada.
      */
+
+    /**
+     *
+     * @param listaLibros
+     */
+
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
         //creamos nuevo objeto vacio libro

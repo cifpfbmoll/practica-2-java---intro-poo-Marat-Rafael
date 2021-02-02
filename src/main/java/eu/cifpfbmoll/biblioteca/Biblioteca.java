@@ -15,6 +15,10 @@ package eu.cifpfbmoll.biblioteca;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Marat Rafael
+ */
 public class Biblioteca {
 
     //atributos
@@ -24,10 +28,20 @@ public class Biblioteca {
 
     //constructores
     // constructor vacio
+
+    /**
+     *
+     */
     public Biblioteca() {
     }
     //constructor con todos parametros
 
+    /**
+     *
+     * @param nombre nombre de la biblioteca , lo pasamos como parametro
+     * @param listaLibros lista de libros que tiene la biblioteca, pasamos como parametro
+     * @param listaPersonal lista del personal que trabaja en la biblioteca, pasamos como parametro
+     */
     public Biblioteca(String nombre, ArrayList listaLibros, ArrayList listaPersonal) {
         this.nombre = nombre;
         this.listaLibros = listaLibros;
@@ -35,6 +49,11 @@ public class Biblioteca {
     }
 
     //constructor copia 
+
+    /**
+     *
+     * @param biblioteca
+     */
     public Biblioteca(Biblioteca biblioteca) {
         this.nombre = biblioteca.nombre;
         this.listaLibros = biblioteca.listaLibros;
@@ -42,11 +61,21 @@ public class Biblioteca {
     }
 
     // metodos getter/setter
+
+    /**
+     *
+     * @return devuelve nombre de la biblioteca
+     */
     public String getNombre() {
         return nombre;
     }
 
     //control en el setter de manera que el nombre de la biblioteca empiece en mayúsculas.
+
+    /**
+     *
+     * @param nombre se establece nombre de la biblioteca
+     */
     public void setNombre(String nombre) {
         while (nombre.charAt(0) < 65 || nombre.charAt(0) > 90) {
             // comprobamos con la tabla ASCII A=65 Z=90
@@ -57,18 +86,34 @@ public class Biblioteca {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return devuelve lista de libros que pertenece a la biblioteca
+     */
     public ArrayList getListaLibros() {
         return listaLibros;
     }
 
+    /**
+     *
+     * @param listaLibros se crea lista de libros para la biblioteca
+     */
     public void setListaLibros(ArrayList listaLibros) {
         this.listaLibros = listaLibros;
     }
 
+    /**
+     *
+     * @return devuelve la lista del personal de la biblioteca
+     */
     public ArrayList getListaPersonal() {
         return listaPersonal;
     }
 
+    /**
+     *
+     * @param listaPersonal se crea lista del personal que trabaja en la biblioteca
+     */
     public void setListaPersonal(ArrayList listaPersonal) {
         this.listaPersonal = listaPersonal;
     }
@@ -81,6 +126,11 @@ public class Biblioteca {
 
     // resto de metodos
     //Mostrar libros. Imprimirá por pantalla toda la lista de libros. (método instancia)
+
+    /**
+     *  este metodo permite visualisar todos libros de la biblioteca
+     * @param listaLibros pasamos como parametro lista de libros 
+     */
     public void mostrarTodosLibros(ArrayList<Libro> listaLibros) {
         for (int i = 0; i < listaLibros.size(); i++) {
             System.out.println(listaLibros.get(i));
@@ -88,6 +138,12 @@ public class Biblioteca {
     }
 
     //Mostrar libros disponibles. Solo imprime la lista de los libros disponibles. (método instancia)
+
+    /**
+     *
+     * @param listaLibros pasamos como parametro una lista de libros 
+     * y nos muestra libros que estan disponible, si su cantidad es mas que zero
+     */
     public void mostrarLibrosDispinibles(ArrayList<Libro> listaLibros) {
         //creamos un objeto de libro
         Libro libro;
