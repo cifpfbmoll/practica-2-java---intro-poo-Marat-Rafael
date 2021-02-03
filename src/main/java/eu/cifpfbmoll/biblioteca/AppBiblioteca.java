@@ -23,7 +23,8 @@ public class AppBiblioteca {
      * @param args
      */
     public static void main(String[] args) {
-
+        //creamos nuevo ArrayList para almacenar los usuarios
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         
         // declaramos lista del personal para añadir dentro de la biblioteca
         ArrayList<Persona> listaPersonal1 = new ArrayList<>();       

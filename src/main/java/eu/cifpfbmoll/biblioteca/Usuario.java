@@ -282,38 +282,42 @@ public class Usuario {
         String nifBorrar;
         boolean salir = false;
 
-        //usamos switch para eligir como borramos       
-        System.out.println("Para borrar usuario usamos: ");
-        System.out.println("1. Nombre");
-        System.out.println("2. Aapellido");
-        System.out.println("3. NIF");
-        System.out.println("4. Salir");
-        byte option = sc.nextByte();
+        //usamos switch para eligir como borramos  
+        do {
 
-        switch (option) {
-            case 1:
-                System.out.println("Introduce nombre del usuario a borrar: ");
-                nombreBorrar = sc.nextLine();
-                //llamamos a otro metodo borrar por nombre
-                borrarNombre(nombreBorrar, listaUsuarios);
-                break;
-            case 2:
-                System.out.println("Introduce apellido del usuario a borrar: ");
-                apellidoBorrar = sc.nextLine();
-                //llamamos a otro metodo borrar por apellido
-                borrarApellido(apellidoBorrar, listaUsuarios);
-                break;
-            case 3:
-                System.out.println("Introduce NIF del usuario a borrar: ");
-                nifBorrar = sc.nextLine();
-                // llamamos otro metodo 
-                borrarNif(nifBorrar, listaUsuarios);
-                break;
-            case 4:
-                salir = true;
-                break;
+            System.out.println("Para borrar usuario usamos: ");
+            System.out.println("1. Nombre");
+            System.out.println("2. Aapellido");
+            System.out.println("3. NIF");
+            System.out.println("4. Salir");
+            byte option = sc.nextByte();
 
-        }
+            switch (option) {
+                case 1:
+                    System.out.println("Introduce nombre del usuario a borrar: ");
+                    nombreBorrar = sc.nextLine();
+                    //llamamos a otro metodo borrar por nombre
+                    borrarNombre(nombreBorrar, listaUsuarios);
+                    break;
+                case 2:
+                    System.out.println("Introduce apellido del usuario a borrar: ");
+                    apellidoBorrar = sc.nextLine();
+                    //llamamos a otro metodo borrar por apellido
+                    borrarApellido(apellidoBorrar, listaUsuarios);
+                    break;
+                case 3:
+                    System.out.println("Introduce NIF del usuario a borrar: ");
+                    nifBorrar = sc.nextLine();
+                    // llamamos otro metodo 
+                    borrarNif(nifBorrar, listaUsuarios);
+                    break;
+                case 4:
+                    salir = true;
+                    break;
+
+            }// fin switch
+
+        } while (salir);
 
     }//fin metodo borrarUsuario
 
