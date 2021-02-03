@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author administrador
+ * @author Marat Rafael
  */
 public class Persona {
 
@@ -72,7 +72,7 @@ public class Persona {
 
     /**
      *
-     * @return
+     * @return devuelve nombre de la persona
      */
     public String getNombre() {
         return nombre;
@@ -80,7 +80,7 @@ public class Persona {
 
     /**
      *
-     * @param nombre
+     * @param nombre se establece nombre a la persona
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -88,7 +88,7 @@ public class Persona {
 
     /**
      *
-     * @return
+     * @return devuelve apellido de la persona
      */
     public String getApellido() {
         return apellido;
@@ -96,7 +96,7 @@ public class Persona {
 
     /**
      *
-     * @param apellido
+     * @param apellido se establece apellido a la persona
      */
     public void setApellido(String apellido) {
         this.apellido = apellido;
@@ -104,7 +104,7 @@ public class Persona {
 
     /**
      *
-     * @return
+     * @return devuelve NIF de la persona
      */
     public String getNIF() {
         return NIF;
@@ -112,7 +112,7 @@ public class Persona {
 
     /**
      *
-     * @param NIF
+     * @param NIF se establece NIF de la persona
      */
     public void setNIF(String NIF) {
         this.NIF = NIF;
@@ -120,7 +120,7 @@ public class Persona {
 
     /**
      *
-     * @return
+     * @return devuelve la contraceña de la persona
      */
     public String getContrasenia() {
         return contrasenia;
@@ -130,7 +130,8 @@ public class Persona {
 
     /**
      *
-     * @param contrasenia
+     * @param contrasenia pasamos como parametro la contrasenia
+     * y comprobamos longitud que sea mas de 8
      */
     public void setContraseña(String contrasenia) {
         while (contrasenia.length() < 8) {
@@ -139,7 +140,6 @@ public class Persona {
         }
         this.contrasenia = contrasenia;
     }
-
     //toString
     @Override
     public String toString() {
@@ -152,7 +152,9 @@ public class Persona {
 
     /**
      *
-     * @param listaPersonas
+     * @param listaPersonas pasamos como parametro ArrayList de las personas
+     * durante ejecucion del metodo preguntamos datos de la persona
+     * y añadimos a la lista del personal de la biblioteca
      */
     public static void anadirPersonalBiblioteca(ArrayList<Persona> listaPersonas) {
 
@@ -183,7 +185,10 @@ public class Persona {
 
     /**
      *
-     * @param listaPersonal
+     * @param listaPersonal pasamos como parametro ArrayList de las personas
+     * para eliminar una persona de la lista primero tenemos que buscar la en la lista
+     * eligimos con menu como lo buscamos por nombre apellido o NIF
+     * si encontramos, borramos y mostramos mensaje
      */
     public static void eliminarPersonal(ArrayList<Persona> listaPersonal) {
         String nom = "";
@@ -297,7 +302,8 @@ public class Persona {
     
     /**
      *
-     * @param listaPersonal
+     * @param listaPersonal pasamos como parametro ArrayList del personal
+     * recorremos con for y lo mostramos con metodo toString
      */
     public static void mostrarPersonal(ArrayList <Persona> listaPersonal){
         for (int i = 0; i < listaPersonal.size(); i++) {

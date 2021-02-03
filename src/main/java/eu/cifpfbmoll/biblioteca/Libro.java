@@ -21,7 +21,6 @@ public class Libro {
     private static Scanner sc = new Scanner(System.in);
 
     //atributos
-    
     private static int contadorLibros; // contador  global de todos los libros
     // estatico pertenece a todo la clase
 
@@ -33,7 +32,6 @@ public class Libro {
     private int numCopiasDisponible;
 
     //CONSTRUCTORES
-
     /**
      * constructor vacio
      */
@@ -42,7 +40,6 @@ public class Libro {
     }
 
     //constructor con todos atributos
-
     /**
      *
      * @param ISBN
@@ -62,30 +59,27 @@ public class Libro {
         this.numCopias = numCopias;
         this.numCopiasDisponible = numCopiasDisponibles;
     }
-    
 
     //constructor copia
-
     /**
      *
-     * @param libro
+     * @param libro pasamos como parametro un objeto para hacer copia de el
      */
     public Libro(Libro libro) {
         contadorLibros++; // contador global de todos libros
-        
+
         this.ISBN = libro.ISBN;
         this.titulo = libro.titulo;
         this.autor = libro.autor;
         this.editorial = libro.editorial;
         this.numCopias = libro.numCopias;
-        this.numCopiasDisponible = libro.numCopiasDisponible;       
+        this.numCopiasDisponible = libro.numCopiasDisponible;
     }
 
     // metodos getter y setter
-
     /**
      *
-     * @return
+     * @return devuelve contador de libros, es estatico , comun para todos
      */
     public static int getContadorLibros() {
         return contadorLibros;
@@ -93,7 +87,7 @@ public class Libro {
 
     /**
      *
-     * @param contadorLibros
+     * @param contadorLibros se establece contador de libros
      */
     public static void setContadorLibros(int contadorLibros) {
         Libro.contadorLibros = contadorLibros;
@@ -101,7 +95,7 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve ISBN del libro
      */
     public String getISBN() {
         return ISBN;
@@ -109,7 +103,7 @@ public class Libro {
 
     /**
      *
-     * @param ISBN
+     * @param ISBN se establece un ISBN para un libro
      */
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
@@ -117,7 +111,7 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve titulo del libro
      */
     public String getTitulo() {
         return titulo;
@@ -125,7 +119,7 @@ public class Libro {
 
     /**
      *
-     * @param titulo
+     * @param titulo se establece un titulo para libro
      */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -133,15 +127,15 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve autor del libro
      */
     public String getAutor() {
         return autor;
     }
 
     /**
-     *
-     * @param autor
+     * 
+     * @param autor se establece autor del libro
      */
     public void setAutor(String autor) {
         this.autor = autor;
@@ -149,7 +143,7 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve editorial del libro
      */
     public String getEditorial() {
         return editorial;
@@ -157,7 +151,7 @@ public class Libro {
 
     /**
      *
-     * @param editorial
+     * @param editorial se establece editorial del libro
      */
     public void setEditorial(String editorial) {
         this.editorial = editorial;
@@ -165,17 +159,17 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve numero de copias
      */
     public int getNumCopias() {
         return numCopias;
     }
 
-    // numero de copias inicial no puede ser menos que 1
-
+   
     /**
      *
-     * @param numCopias
+     * @param numCopias se establece numero de copias,
+     * no acepta numeros menor que uno
      */
     public void setNumCopias(int numCopias) {
         while (numCopias < 1) {
@@ -187,7 +181,7 @@ public class Libro {
 
     /**
      *
-     * @return
+     * @return devuelve numero de copias disponibles
      */
     public int getNumCopiasDisponible() {
         return numCopiasDisponible;
@@ -195,7 +189,7 @@ public class Libro {
 
     /**
      *
-     * @param numCopiasDisponible
+     * @param numCopiasDisponible se establece numero de copias dicponibles
      */
     public void setNumCopiasDisponible(int numCopiasDisponible) {
         this.numCopiasDisponible = numCopiasDisponible;
@@ -204,20 +198,20 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numCopias=" + numCopias + ", numCopiasDisponible=" + numCopiasDisponible + '}';
-    }  
+        return "Libro { " + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", numCopias=" + numCopias + ", numCopiasDisponible=" + numCopiasDisponible + '}';
+    }
 
     // resto de  metodos
     /*
      Añadir libro. Solicitará los datos para crear un libro 
     y añadirá dicho libro a una lista de libros que recibirá como parámetro el método.
      */
-
     /**
      *
-     * @param listaLibros
+     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
+     * durante ejecucion del metodo se rellena atributos del libro, 
+     * y añade este libro a la lista que pasamos como parametro
      */
-
     public static void anadirLibro(ArrayList<Libro> listaLibros) {
         // creamos objeto vacio 
         Libro nuevoLibro = new Libro();
@@ -242,25 +236,31 @@ public class Libro {
         sc.nextLine();
 
         listaLibros.add(nuevoLibro);
+        System.out.println(nuevoLibro.toString());       
+        System.out.println("Añadido con exito.");
 
     }// fin metodo anadir nuevolibro
 
-    
     /*
     Eliminar libro
     . Solicitará al usuario un ISBN , lo buscará y lo eliminará de la lista 
     que recibirá como parámetro el método.
     No se puede eliminar un libro que tiene reservas.
      */
-
+    
     /**
      *
-     * @param listaLibros
+     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
+     * primero comprobamos que numero de libro es igual a copias disponibles
+     * si es asi , elimina libro de la lista que le pasamos como parametro
      */
-
     public static void eliminarLibro(ArrayList<Libro> listaLibros) {
         System.out.println("Escribe ISBN para borrar libro de la lista");
         String isbn = sc.nextLine();
+        boolean encontrado=false;
+        int index=-1;
+        Libro libroBorrado=new Libro(); 
+        //nuevo objeto Libro, usamos para mostrar que libro esta borrado
 
         //recorremos listaArray con for
         for (int i = 0; i < listaLibros.size(); i++) {
@@ -269,20 +269,33 @@ public class Libro {
             if (listaLibros.get(i).getNumCopias() == listaLibros.get(i).getNumCopiasDisponible()) {
                 // buscamos si isbn introducido por usuario coincide con uno de lista
                 if (listaLibros.get(i).getISBN().equals(isbn)) {
+                    encontrado = true; //encontamos
+                    index = i;
+                    libroBorrado = listaLibros.get(index); //copiamos libro para mostrar al usuario 
                     //si coincide - eliminamos
                     listaLibros.remove(i);
                 }
             }
         }// fin for
+        // mostramos mensaje si libro esta eliminado o no
+        if(encontrado){
+            System.out.println(libroBorrado.toString());
+            System.out.println("Eliminado con exito.");
+        }else{
+            System.out.println("No encontramos libro con ISBN indicado: "+isbn);
+        }
+        
     }// fin metodo eliminarLibro
 
     // Buscar libro por ISBN. Pedirá al usuario un ISBN, lo buscará en la lista que recibirá como parámetro el método. 
     // En caso de encontrarlo devolverá la posición en la que se encuentra, en caso contrario devolverá -1.
-
     /**
      *
-     * @param listaLibros
-     * @return
+     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
+     * donde buscamos libro
+     * @return devuelve index del libro dentro de la lista
+     * si no se encuentra devuelve -1
+     * pedimos al usuario ISBN y buscamos en la lista
      */
     public static int buscarLibroISBN(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
@@ -300,11 +313,10 @@ public class Libro {
         }
         if (encontrado) {
             System.out.println(listaLibros.get(index).toString());
-        }else{
-            System.out.println("No encontrado libro con ISBN indicado");
+        } else {
+            System.out.println("No encontrado libro con ISBN indicado "+isbn);
         }
-        
-        return index;
+        return index;       
     }// fin metodo buscarLibro
 
     /*
@@ -312,12 +324,11 @@ public class Libro {
     lo buscará en la lista que recibirá como parámetro el método. 
     Mostrará cualquier libro que contenga la cadena buscada.
      */
-
     /**
      *
-     * @param listaLibros
+     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
+     * preguntamos al usuario titulo del libro y lo buscamos 
      */
-
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
         //creamos nuevo objeto vacio libro
@@ -338,7 +349,7 @@ public class Libro {
                 //añadimos a la lista
                 listaLibrosEncontrados.add(libro);
                 encontrado = true;
-                
+
             }
         }//fin for buscar libro y añadir a lista
         if (!encontrado) {
@@ -353,7 +364,6 @@ public class Libro {
     }//fin metodo buscarLibroTitulo
 
 }// fin clase
-
 
 /*
     static (pertenece a la clase)  vs instancia( pertenece al objeto creado)

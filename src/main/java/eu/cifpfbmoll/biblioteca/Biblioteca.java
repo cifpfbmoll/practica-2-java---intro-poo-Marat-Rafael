@@ -29,18 +29,15 @@ public class Biblioteca {
     //constructores
     // constructor vacio
 
-    /**
-     *
-     */
     public Biblioteca() {
     }
     //constructor con todos parametros
 
     /**
      *
-     * @param nombre nombre de la biblioteca , lo pasamos como parametro
-     * @param listaLibros lista de libros que tiene la biblioteca, pasamos como parametro
-     * @param listaPersonal lista del personal que trabaja en la biblioteca, pasamos como parametro
+     * @param nombre nombre de la biblioteca 
+     * @param listaLibros lista de libros que tiene la biblioteca
+     * @param listaPersonal lista del personal que trabaja en la biblioteca
      */
     public Biblioteca(String nombre, ArrayList listaLibros, ArrayList listaPersonal) {
         this.nombre = nombre;
@@ -52,7 +49,7 @@ public class Biblioteca {
 
     /**
      *
-     * @param biblioteca
+     * @param biblioteca pasamos como parametro una biblioteca para crear una copia exacta
      */
     public Biblioteca(Biblioteca biblioteca) {
         this.nombre = biblioteca.nombre;
@@ -121,7 +118,7 @@ public class Biblioteca {
     //toString
     @Override
     public String toString() {
-        return "Biblioteca{" + "nombre=" + nombre + ", listaLibros=" + listaLibros + ", listaPersonal=" + listaPersonal + '}';
+        return "Biblioteca {" + "nombre=" + nombre + ", listaLibros=" + listaLibros + ", listaPersonal=" + listaPersonal + '}';
     }
 
     // resto de metodos
@@ -138,7 +135,6 @@ public class Biblioteca {
     }
 
     //Mostrar libros disponibles. Solo imprime la lista de los libros disponibles. (método instancia)
-
     /**
      *
      * @param listaLibros pasamos como parametro una lista de libros 
