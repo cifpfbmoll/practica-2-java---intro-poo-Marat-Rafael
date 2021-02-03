@@ -22,7 +22,7 @@ import java.util.Scanner;
  *
  * @author Marat Rafael
  */
-public class Usuario {
+public class Usuario extends Persona{
 
     public static Scanner sc = new Scanner(System.in);
     //creamos objeto del scaner
@@ -151,7 +151,7 @@ public class Usuario {
      * ejecucion del metodo rellenamos atributos del usuario posteriormente lo
      * añadimos a la lista
      */
-    public void anadirUsuario(ArrayList<Usuario> listaUsuarios) {
+    public static void anadirUsuario(ArrayList<Usuario> listaUsuarios) {
         // creamos variables para cada atributo del usuario
         System.out.println("Nombre del usuario nuevo: ");
         String nombreUsuario = sc.nextLine();
@@ -276,7 +276,7 @@ public class Usuario {
      * @param listaUsuarios pasamos como parametro lista de los usuarios para
      * eliminar usuario
      */
-    public void borrarUsuario(ArrayList<Usuario> listaUsuarios) {
+    public static void borrarUsuario(ArrayList<Usuario> listaUsuarios) {
         String nombreBorrar;
         String apellidoBorrar;
         String nifBorrar;
@@ -291,6 +291,7 @@ public class Usuario {
             System.out.println("3. NIF");
             System.out.println("4. Salir");
             byte option = sc.nextByte();
+            sc.nextLine();
 
             switch (option) {
                 case 1:
@@ -328,7 +329,7 @@ public class Usuario {
      * @param listaUsuarios pasamo como parametro ArrayList de los usuario donde
      * buscamos y borramos
      */
-    public void borrarNombre(String nombreBorrar, ArrayList<Usuario> listaUsuarios) {
+    public static void borrarNombre(String nombreBorrar, ArrayList<Usuario> listaUsuarios) {
         // creamos nuevo usuario para mostrar despues a quen borramos
         Usuario usuarioBorrado = new Usuario();
         boolean borrado = false;
@@ -355,7 +356,7 @@ public class Usuario {
      * @param listaUsuarios pasamos como parametro ArrayList donde estan todos
      * los usuario
      */
-    public void borrarApellido(String apellidoBorrar, ArrayList<Usuario> listaUsuarios) {
+    public static void borrarApellido(String apellidoBorrar, ArrayList<Usuario> listaUsuarios) {
         // creamos nuevo usuario para mostrar despues a quen borramos
         Usuario usuarioBorrado = new Usuario();
         boolean borrado = false;
@@ -375,7 +376,7 @@ public class Usuario {
         }
     }//fin metodo borrarApellido
 
-    public void borrarNif(String nifBorrar, ArrayList<Usuario> listaUsuarios) {
+    public static void borrarNif(String nifBorrar, ArrayList<Usuario> listaUsuarios) {
 
         // creamos nuevo usuario para mostrar despues a quen borramos
         Usuario usuarioBorrado = new Usuario();
@@ -396,5 +397,17 @@ public class Usuario {
             System.out.println("No podemos eliminar usuario que no esta en la lista");
         }
     }// fin metodo borrarNif
+    
+    
+    /**
+     * 
+     * @param listaUsuarios pasamos como parametro lista de los usuarios
+     * y mostramos todo contenido
+     */
+    public static void mostrarUsuarios(ArrayList <Usuario> listaUsuarios){
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            System.out.println(listaUsuarios.get(i).toString());           
+        }
+    }// fin metodo mostrarUsuarios
 
 }//fin class Usuario
