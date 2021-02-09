@@ -22,7 +22,7 @@ import java.util.Scanner;
  *
  * @author Marat Rafael
  */
-public class Usuario extends Persona{
+public class Usuario extends Persona {
 
     public static Scanner sc = new Scanner(System.in);
     //creamos objeto del scaner
@@ -397,16 +397,15 @@ public class Usuario extends Persona{
             System.out.println("No podemos eliminar usuario que no esta en la lista");
         }
     }// fin metodo borrarNif
-    
-    
+
     /**
-     * 
-     * @param listaUsuarios pasamos como parametro lista de los usuarios
-     * y mostramos todo contenido
+     *
+     * @param listaUsuarios pasamos como parametro lista de los usuarios y
+     * mostramos todo contenido
      */
-    public static void mostrarUsuarios(ArrayList <Usuario> listaUsuarios){
+    public static void mostrarUsuarios(ArrayList<Usuario> listaUsuarios) {
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            System.out.println(listaUsuarios.get(i).toString());           
+            System.out.println(listaUsuarios.get(i).toString());
         }
     }// fin metodo mostrarUsuarios
 

@@ -329,6 +329,7 @@ public class Libro {
      * @param listaLibros pasamos como parametro un ArrayList de listado de libros
      * preguntamos al usuario titulo del libro y lo buscamos 
      */
+    //conteins
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
         //creamos nuevo objeto vacio libro

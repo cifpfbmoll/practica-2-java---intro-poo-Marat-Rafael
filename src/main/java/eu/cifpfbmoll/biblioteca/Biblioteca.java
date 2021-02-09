@@ -25,17 +25,17 @@ public class Biblioteca {
     private String nombre;
     private ArrayList<Libro> listaLibros;
     private ArrayList<Persona> listaPersonal;
+    private ArrayList<Usuario> listaUsuario;
 
     //constructores
     // constructor vacio
-
     public Biblioteca() {
     }
     //constructor con todos parametros
 
     /**
      *
-     * @param nombre nombre de la biblioteca 
+     * @param nombre nombre de la biblioteca
      * @param listaLibros lista de libros que tiene la biblioteca
      * @param listaPersonal lista del personal que trabaja en la biblioteca
      */
@@ -46,10 +46,10 @@ public class Biblioteca {
     }
 
     //constructor copia 
-
     /**
      *
-     * @param biblioteca pasamos como parametro una biblioteca para crear una copia exacta
+     * @param biblioteca pasamos como parametro una biblioteca para crear una
+     * copia exacta
      */
     public Biblioteca(Biblioteca biblioteca) {
         this.nombre = biblioteca.nombre;
@@ -57,7 +57,37 @@ public class Biblioteca {
         this.listaPersonal = biblioteca.listaPersonal;
     }
 
+    /**
+     * nuevo constructor con todos atributos de antes y mas lista usuarios
+     *
+     * @param nombre nombre de la biblioteca
+     * @param listaLibros ArrayList pasamos como parametro lista de libros
+     * @param listaPersonal ArrayList pasamos como parametro lista de personal
+     * @param listaUsuario ArrayList pasamos como parametro lista de los
+     * usuarios
+     */
+    public Biblioteca(String nombre, ArrayList<Libro> listaLibros, ArrayList<Persona> listaPersonal, ArrayList<Usuario> listaUsuario) {
+        this.nombre = nombre;
+        this.listaLibros = listaLibros;
+        this.listaPersonal = listaPersonal;
+        this.listaUsuario = listaUsuario;
+    }
     // metodos getter/setter
+
+    /**
+     * @return ArrayList con lista de los usuarios
+     */
+    public ArrayList<Usuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    /**
+     *
+     * @param listaUsuario se establece nuevo ArrayList de los usuarios
+     */
+    public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
 
     /**
      *
@@ -68,7 +98,6 @@ public class Biblioteca {
     }
 
     //control en el setter de manera que el nombre de la biblioteca empiece en mayúsculas.
-
     /**
      *
      * @param nombre se establece nombre de la biblioteca
@@ -109,7 +138,8 @@ public class Biblioteca {
 
     /**
      *
-     * @param listaPersonal se crea lista del personal que trabaja en la biblioteca
+     * @param listaPersonal se crea lista del personal que trabaja en la
+     * biblioteca
      */
     public void setListaPersonal(ArrayList listaPersonal) {
         this.listaPersonal = listaPersonal;
@@ -123,10 +153,10 @@ public class Biblioteca {
 
     // resto de metodos
     //Mostrar libros. Imprimirá por pantalla toda la lista de libros. (método instancia)
-
     /**
-     *  este metodo permite visualisar todos libros de la biblioteca
-     * @param listaLibros pasamos como parametro lista de libros 
+     * este metodo permite visualisar todos libros de la biblioteca
+     *
+     * @param listaLibros pasamos como parametro lista de libros
      */
     public void mostrarTodosLibros(ArrayList<Libro> listaLibros) {
         for (int i = 0; i < listaLibros.size(); i++) {
@@ -137,8 +167,8 @@ public class Biblioteca {
     //Mostrar libros disponibles. Solo imprime la lista de los libros disponibles. (método instancia)
     /**
      *
-     * @param listaLibros pasamos como parametro una lista de libros 
-     * y nos muestra libros que estan disponible, si su cantidad es mas que zero
+     * @param listaLibros pasamos como parametro una lista de libros y nos
+     * muestra libros que estan disponible, si su cantidad es mas que zero
      */
     public void mostrarLibrosDispinibles(ArrayList<Libro> listaLibros) {
         //creamos un objeto de libro

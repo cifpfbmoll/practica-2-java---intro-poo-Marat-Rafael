@@ -8,9 +8,9 @@ import static eu.cifpfbmoll.biblioteca.Usuario.anadirUsuario;
 import static eu.cifpfbmoll.biblioteca.Usuario.borrarUsuario;
 import static eu.cifpfbmoll.biblioteca.Usuario.mostrarUsuarios;
 import java.util.ArrayList;
-//import static eu.cifpfbmoll.biblioteca.Persona.anadirPersonalBiblioteca;
-//import static eu.cifpfbmoll.biblioteca.Persona.eliminarPersonal;
-//import static eu.cifpfbmoll.biblioteca.Persona.mostrarPersonal;
+import static eu.cifpfbmoll.biblioteca.Persona.anadirPersonalBiblioteca;
+import static eu.cifpfbmoll.biblioteca.Persona.eliminarPersonal;
+import static eu.cifpfbmoll.biblioteca.Persona.mostrarPersonal;
 
 //import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,15 +28,17 @@ public class AppBiblioteca {
     public static void main(String[] args) {
         //creamos nuevo ArrayList para almacenar los usuarios
         ArrayList<Usuario> listaUsuarios1 = new ArrayList<>();
-
+        
         // declaramos lista del personal para añadir dentro de la biblioteca
         ArrayList<Persona> listaPersonal1 = new ArrayList<>();
         //creamos lista de libros para añadir a la biblioteca
         ArrayList<Libro> listaLibros1 = new ArrayList<>();
-        //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1
-        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1);
+        //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1, listaUsuarios
+        
+        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1);
+        
 
-        // creamos algunos usuarios de la biblioteca
+        // creamos algunos Usuarios de la biblioteca
         Usuario u1 = new Usuario("Aarón", "Fernández", "111", "aaron");
         Usuario u2 = new Usuario("Alex", "Baskota", "112", "alex");
         Usuario u3 = new Usuario("Jaume", "Fullana", "113", "jaume");
@@ -45,18 +47,21 @@ public class AppBiblioteca {
         Usuario u6 = new Usuario("Josep", "Fayos", "116", "josep");
         Usuario u7 = new Usuario("Marc", "Aguilo", "117", "marc");
         Usuario u8 = new Usuario("Sergio", "Gonzalez", "118", "sergio");
-        Usuario u9 = new Usuario("Tamara", "Fernandez", "119", "sergio");
+        Usuario u9 = new Usuario("Tamara", "Fernandez", "119", "tamara");
 
-        // añadimos usuarios a la lista
-        listaUsuarios1.add(u1);
-        listaUsuarios1.add(u2);
-        listaUsuarios1.add(u3);
-        listaUsuarios1.add(u4);
-        listaUsuarios1.add(u5);
-        listaUsuarios1.add(u6);
-        listaUsuarios1.add(u7);
-        listaUsuarios1.add(u8);
-        listaUsuarios1.add(u9);
+        // añadimos Usuarios a la lista
+        miBiblioteca.getListaUsuario().add(u1);
+        miBiblioteca.getListaUsuario().add(u2);
+        miBiblioteca.getListaUsuario().add(u3);
+        miBiblioteca.getListaUsuario().add(u4);
+        miBiblioteca.getListaUsuario().add(u5);
+        miBiblioteca.getListaUsuario().add(u6);
+        miBiblioteca.getListaUsuario().add(u7);
+        miBiblioteca.getListaUsuario().add(u8);
+        miBiblioteca.getListaUsuario().add(u9);
+        
+        
+
 
         //creamos algunos libros para la biblioteca para probar
         // Libro  atributos : ISBN +  titulo + autor  + editorial + numCopias  + numCopiasDisponible 
@@ -133,45 +138,34 @@ public class AppBiblioteca {
 
             switch (opcion) {
 
-                case 1: //añadir libro
+                case 1 -> //añadir libro
                     anadirLibro(miBiblioteca.getListaLibros());
                     //anadirPersonalBiblioteca(listaPersonal1);  //probando anadir personal
                     //anadirUsuario(listaUsuarios1); //probando anadirUsuario
 
-                    break;
-
-                case 2: // eliminar libro                   
+                case 2 -> // eliminar libro                   
                     eliminarLibro(miBiblioteca.getListaLibros());
                     //eliminarPersonal(listaPersonal1); //probando eliminarPersonal
                     //borrarUsuario(listaUsuarios1); //probando borrarUsuario
 
-                    break;
-
-                case 3:// buscar libro por ISBN                   
+                case 3 -> // buscar libro por ISBN                   
                     buscarLibroISBN(miBiblioteca.getListaLibros());
                     //mostrarPersonal(listaPersonal1);
 
-                    break;
-
-                case 4://buscar libro por titulo
+                case 4 -> //buscar libro por titulo
                     buscarLibroTitulo(miBiblioteca.getListaLibros());
-                    break;
 
-                case 5:// mostrar todos libros
+                case 5 -> // mostrar todos libros
                     miBiblioteca.mostrarTodosLibros(miBiblioteca.getListaLibros());
-                    //mostrarUsuarios(listaUsuarios1);
-                    break;
+                //mostrarUsuarios(listaUsuarios1);
 
-                case 6: // mostrar solo disponibles libros
+                case 6 -> // mostrar solo disponibles libros
                     miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
-                    break;
 
-                case 7://salir
+                case 7 -> //salir
                     salir = true;
-                    break;
 
-                default:
-                    System.out.println("Las opciones disponibles del 1 a 7 ");
+                default -> System.out.println("Las opciones disponibles del 1 a 7 ");
 
             }//fin switch
 
