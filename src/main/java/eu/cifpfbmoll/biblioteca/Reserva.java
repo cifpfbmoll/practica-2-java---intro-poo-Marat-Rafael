@@ -101,12 +101,12 @@ public class Reserva {
         
         // al saber nif comprobamos cuantas reservas tiene
         boolean permiso = controlReserva(nifUsuario, miBiblioteca);
+        // si no tiene permiso salta mesaje 
         if(!permiso){
             System.out.println("Tiene mas de 5 reservas actuales no puede hacer mas");
-        }
-        
-        
-        //*************** Libro
+        }else{
+            // si tiene permiso siguimos con creacion de la reserva
+                    //*************** Libro
         String isbnLibro = pedirIsbnLibro(miBiblioteca);
 
         // indicamos fecha del inicio
@@ -130,6 +130,11 @@ public class Reserva {
         // usamos todos datos para crear nueva instancia de Reserva
         Reserva reserva = new Reserva(usuarioReserva, libroReserva, fechaReserva, fecheDevolver);
         miBiblioteca.getListaReserva().add(reserva);
+            
+        }
+        
+        
+
 
     }//fin metodo creaReserva
 
@@ -299,7 +304,7 @@ public class Reserva {
                 contadorReservas++;
             }
         }
-        if (contadorReservas > 5) {
+        if (contadorReservas >= 5) {
             return false;
         } else {
             return true;

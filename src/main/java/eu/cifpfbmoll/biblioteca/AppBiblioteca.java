@@ -118,13 +118,21 @@ public class AppBiblioteca {
         miBiblioteca.getListaPersonal().add(p4);
         miBiblioteca.getListaPersonal().add(p5);
 
-        // creo unas reservas
+        // creo unas reservas 
         Reserva r1 = new Reserva(u1, l1, "10/02/2021", "30/02/2021");
         Reserva r2 = new Reserva(u5, l5, "10/02/2021", "30/02/2021");
+        Reserva r3 = new Reserva(u1, l2, "11/01/2001", "11/09/2020");
+        Reserva r4 = new Reserva(u1, l30, "10/02/2021", "30/02/2021");
+        Reserva r5 = new Reserva(u1, l31, "10/02/2021", "30/02/2021");
+        Reserva r6 = new Reserva(u1, l32, "10/02/2021", "30/02/2021");
 
         //añadimos reservas en lalista de reservas
         miBiblioteca.getListaReserva().add(r1);
         miBiblioteca.getListaReserva().add(r2);
+        miBiblioteca.getListaReserva().add(r3);
+        miBiblioteca.getListaReserva().add(r4);
+        miBiblioteca.getListaReserva().add(r5);
+        miBiblioteca.getListaReserva().add(r6);
 
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -139,9 +147,10 @@ public class AppBiblioteca {
             System.out.println("4.Buscar Libro por titulo");
             System.out.println("5.Mostrar Libros");
             System.out.println("6.Mostrar Libros disponibles");
-            System.out.println("7.Salir");
-            System.out.println("9.Crear Reservas");
-            System.out.println("8.Mostrar Reservas");
+            System.out.println("7.Mostrar Reservas");
+            System.out.println("8.Crear Reservas");
+            System.out.println("9.Borrar Reserva");
+            System.out.println("0.Salir");
             System.out.println("*****************************");
             System.out.println("");
             opcion = sc.nextByte();
@@ -173,13 +182,16 @@ public class AppBiblioteca {
                 case 6 -> // mostrar solo disponibles libros
                     miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
 
-                case 8 ->
+                case 7 ->
                     mostrarReservas(miBiblioteca);
+
+                case 8 ->
+                    crearReserva(miBiblioteca);
                     
                 case 9 ->
-                    crearReserva(miBiblioteca);
+                    mostrarReservas(miBiblioteca);
 
-                case 7 -> //salir
+                case 0 -> //salir
                     salir = true;
 
                 default ->
