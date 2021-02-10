@@ -409,4 +409,19 @@ public class Usuario extends Persona {
         }
     }// fin metodo mostrarUsuarios
 
+    /**
+     * metodo para buscar si nif indicado existe en la lista de usuarios 
+     * @param nifUsuarioBuscado
+     * @param listaUsuarios
+     * @return true o false
+     */
+    public static boolean buscarUsuarioNifBoolean(String nifUsuarioBuscado, ArrayList<Usuario> listaUsuarios) {
+        // recorremos arraylist , si encontramos nif devuelve verdadero, si No - devuelve falso
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+
+            return listaUsuarios.get(i).getNIF().equalsIgnoreCase(nifUsuarioBuscado);
+        }
+        return false;
+    }
+
 }//fin class Usuario

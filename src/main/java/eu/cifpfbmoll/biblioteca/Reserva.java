@@ -6,7 +6,9 @@ así como listado de reservas realizadas por un usuario de la biblioteca.
  */
 package eu.cifpfbmoll.biblioteca;
 
+import static eu.cifpfbmoll.biblioteca.Libro.buscarLibroIsbnBoolean;
 import static eu.cifpfbmoll.biblioteca.Usuario.buscarUsuarioNif;
+import static eu.cifpfbmoll.biblioteca.Usuario.buscarUsuarioNifBoolean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -94,13 +96,10 @@ public class Reserva {
     }
 
     public static void crearReserva(Biblioteca miBiblioteca) {
-        // variable para gurdar nif del usuario para reserva
-        System.out.println("NIF del usuario");
-        String nifUsuario = sc.nextLine();
-        
-        // variable para guardar isbn del libro para reservar
-        System.out.println("ISBN del libro");
-        String isbnLibro = sc.nextLine();
+        //***************nif usuario
+        String nifUsuario = pedirNifUsuario(miBiblioteca);
+        //*************** Libro
+        String isbnLibro = pedirIsbnLibro(miBiblioteca);
 
         // indicamos fecha del inicio
         System.out.println("La fecha de hoy: ");
@@ -127,7 +126,7 @@ public class Reserva {
     }//fin metodo creaReserva
 
     /**
-     *
+     * Devuelve objeto usuario a partir del nif
      * @param nifUsuario
      * @param miBiblioteca
      * @return
@@ -147,15 +146,15 @@ public class Reserva {
                 usuarioConfirmado = miBiblioteca.getListaUsuario().get(i);
             }
         }
-        // si encontramos usuario lo devuelve
-        if (encontrado) {
-            return usuarioConfirmado;
-        } else {
-            // ??? pero si no lo encontramos como podemos indicarlo  ??? 
-            return usuarioConfirmado;
-        }
+        return usuarioConfirmado;
     }// fin metodo ConfirmarUsuario
 
+    /**
+     * devuelve objeto libro apartir de isbn
+     * @param ISBN
+     * @param miBiblioteca
+     * @return 
+     */
     public static Libro confirmarLibro(String ISBN, Biblioteca miBiblioteca) {
         //creamos nuevo libro vacio, para despues copiar aqui datos de la lista
         Libro libroConfirmado = new Libro();
@@ -169,38 +168,31 @@ public class Reserva {
                 libroConfirmado = listaLibros.get(i);
             }
         }
-        if (encontrado) {
-            // si lo encontramos devolvemos objeto libro
-            return libroConfirmado;
-        } else {
-            // y si no ?????  que devolvemos???
-            return libroConfirmado;
+
+        return libroConfirmado;
+    }// fin metodo confirmarLibro
+
+    public static void mostrarReservas(Biblioteca miBiblioteca) {
+        ArrayList<Reserva> listaReservas = miBiblioteca.getListaReserva();
+        for (int i = 0; i < listaReservas.size(); i++) {
+            System.out.println(listaReservas.get(i).toString());
         }
 
-    }// fin metodo confirmarLibro
-    
-    public static void mostrarReservas(Biblioteca miBiblioteca){
-        ArrayList <Reserva> listaReservas = miBiblioteca.getListaReserva();
-        for (int i = 0; i < listaReservas.size(); i++) {
-            System.out.println(listaReservas.get(i).toString());           
-        }
-        
-        
     }//fin mostrarReservas
 
     public void buscarReservaUsuarioNombre(String nombreUsuario, Biblioteca miBiblioteca) {
         int contador = 0;
         // creamos arraylist para reservas de mibiblioteca
         ArrayList<Reserva> listaReserva = miBiblioteca.getListaReserva();
-        
+
         //nuevo objeto de resera para gurdar reserva encontrada
-        Reserva reservaEncontrada =new Reserva();
-        
+        Reserva reservaEncontrada = new Reserva();
+
         //ArrayList para gurdar reservas encontradas
-        ArrayList <Reserva> listaReservaEncontrada = new ArrayList();
+        ArrayList<Reserva> listaReservaEncontrada = new ArrayList();
         //
         boolean encontrado = false;
-        
+
         // recorremos arraylist
         for (int i = 0; i < listaReserva.size(); i++) {
             // si el nombre de usuario coincide 
@@ -210,20 +202,75 @@ public class Reserva {
                 // objeto Reserva que encontramos guardamos en objeto reserva
                 reservaEncontrada = listaReserva.get(i);
                 // este objeto metemos en la lista de Reservas Encontradas
-                listaReservaEncontrada.add(this);               
+                listaReservaEncontrada.add(this);
             }
 
         }
-        if(encontrado){
-            System.out.println("Con el nombre del usuario: "+nombreUsuario+" encontramos "+contador+" reserva/s");
+        if (encontrado) {
+            System.out.println("Con el nombre del usuario: " + nombreUsuario + " encontramos " + contador + " reserva/s");
             for (int i = 0; i < listaReservaEncontrada.size(); i++) {
                 System.out.println(listaReservaEncontrada.get(i).toString());
-                
+
             }
-        }else{
-            System.out.println("Con el nombre del usuario "+nombreUsuario+" no encontramos ninguna reserva");
+        } else {
+            System.out.println("Con el nombre del usuario " + nombreUsuario + " no encontramos ninguna reserva");
         }
 
     }// fin metodo buscarReservaNombreUsuario
 
+    /**
+     * un metodo para pedir NIF del usuario, hasta que no introduce nif que
+     * existe en la biblioteca
+     *
+     * @param miBiblioteca pasamos como parametro objeto de Biblioteca
+     * mibiblioteca, que contiene lista de usuarios
+     * @return
+     */
+    public static String pedirNifUsuario(Biblioteca miBiblioteca) {
+        // variable para gurdar nif del usuario
+        String nifUsuario = "";
+
+        // variable donde guardamos lista de Usuarios desde miBiblioteca
+        ArrayList<Usuario> listaUsuarios = miBiblioteca.getListaUsuario();
+        // boolean para usar como salida del bucle
+        boolean nifUsuarioExiste = false;
+
+        do {
+            System.out.println("NIF del usuario");
+            nifUsuario = sc.nextLine();
+            // llamamos al metodo para comprobar si usuario existe
+            if (buscarUsuarioNifBoolean(nifUsuario, listaUsuarios)) {
+                nifUsuarioExiste = true;
+            }
+
+        } while (!nifUsuarioExiste);
+        // devolvemos Nif , ya sabemos que este nif esta en la lista de Usuarios
+        return nifUsuario;
+    }// fin pedir NifUsuario
+
+    /**
+     * metodo para pedir isbn del libro que existe en la lista
+     *
+     * @param miBiblioteca
+     * @return
+     */
+    public static String pedirIsbnLibro(Biblioteca miBiblioteca) {
+        // variable para guardar isbn del libro para reservar
+        String isbnLibro = "";
+        // ArrayList para guardar lista de librod de la biblioteca
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
+        //boolean para usar como salida del bucle
+        boolean isnbExiste = false;
+
+        do {
+            System.out.println("ISBN del libro");
+            isbnLibro = sc.nextLine();
+            // llamamos al metodo para comprobar que el libro  existe en la lista 
+            if (buscarLibroIsbnBoolean(isbnLibro, listaLibros)) {
+                isnbExiste = true;
+            }
+        } while (!isnbExiste);
+        //
+        return isbnLibro;
+    }
 }// fin clase Reserva

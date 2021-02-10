@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static eu.cifpfbmoll.biblioteca.Persona.anadirPersonalBiblioteca;
 import static eu.cifpfbmoll.biblioteca.Persona.eliminarPersonal;
 import static eu.cifpfbmoll.biblioteca.Persona.mostrarPersonal;
+import static eu.cifpfbmoll.biblioteca.Reserva.crearReserva;
 import static eu.cifpfbmoll.biblioteca.Reserva.mostrarReservas;
 
 //import java.util.ArrayList;
@@ -29,21 +30,17 @@ public class AppBiblioteca {
     public static void main(String[] args) {
         //creamos nuevo ArrayList para almacenar los usuarios
         ArrayList<Usuario> listaUsuarios1 = new ArrayList<>();
-        
+
         // declaramos lista del personal para añadir dentro de la biblioteca
         ArrayList<Persona> listaPersonal1 = new ArrayList<>();
         //creamos lista de libros para añadir a la biblioteca
         ArrayList<Libro> listaLibros1 = new ArrayList<>();
         // creamos ArrayList para las reservas 
-        ArrayList <Reserva> listaReserva1 = new ArrayList();
-        
-        //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1, listaUsuarios
-        
-        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1,listaReserva1);
-        
+        ArrayList<Reserva> listaReserva1 = new ArrayList();
 
-        
-        
+        //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1, listaUsuarios
+        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1, listaReserva1);
+
         // creamos algunos Usuarios de la biblioteca
         Usuario u1 = new Usuario("Aarón", "Fernández", "111", "aaron");
         Usuario u2 = new Usuario("Alex", "Baskota", "112", "alex");
@@ -65,18 +62,16 @@ public class AppBiblioteca {
         miBiblioteca.getListaUsuario().add(u7);
         miBiblioteca.getListaUsuario().add(u8);
         miBiblioteca.getListaUsuario().add(u9);
-                
-
 
         //creamos algunos libros para la biblioteca para probar
         // Libro  atributos : ISBN +  titulo + autor  + editorial + numCopias  + numCopiasDisponible 
-        Libro l1 = new Libro("167545677", "Divina comedia", "Dante", "La Pajarita Roja", 15, 10);
-        Libro l2 = new Libro("197545677", "Divina comedia", "Dante", "Algani Editorial", 55, 0);
-        Libro l3 = new Libro("198545677", "Divina comedia", "Dante", "Editorial Denes", 55, 55);
-        Libro l4 = new Libro("068364926", "Don Quijote de la Mancha 1", "Cervantes", "Andavira Editora", 55, 35);
-        Libro l5 = new Libro("068364899", "Don Quijote de la Mancha 2", "Cervantes", "Andavira Editora", 55, 33);
-        Libro l7 = new Libro("586305f97", "El idiota", "Dostoievski", "La Pajarita Roja", 15, 0);
-        Libro l8 = new Libro("509365028", "El idiota", "Dostoievski", "Calambur Editorial", 15, 5);
+        Libro l1 = new Libro("001", "Divina comedia", "Dante", "La Pajarita Roja", 15, 10);
+        Libro l2 = new Libro("002", "Divina comedia", "Dante", "Algani Editorial", 55, 0);
+        Libro l3 = new Libro("003", "Divina comedia", "Dante", "Editorial Denes", 55, 55);
+        Libro l4 = new Libro("004", "Don Quijote de la Mancha 1", "Cervantes", "Andavira Editora", 55, 35);
+        Libro l5 = new Libro("111", "Don Quijote de la Mancha 2", "Cervantes", "Andavira Editora", 55, 33);
+        Libro l7 = new Libro("112", "El idiota", "Dostoievski", "La Pajarita Roja", 15, 0);
+        Libro l8 = new Libro("113", "El idiota", "Dostoievski", "Calambur Editorial", 15, 5);
         Libro l9 = new Libro("975689215", "Almas muertas", "Dostoievski", "La Pajarita Roja", 11, 1);
         Libro l10 = new Libro("587348122", "Lolita", "Nabokov", "La Pajarita Roja", 100, 0);
         Libro l20 = new Libro("683745554", "Romancero gitano", "Lorca", "Kraicon", 1000, 568);
@@ -123,14 +118,13 @@ public class AppBiblioteca {
         miBiblioteca.getListaPersonal().add(p5);
 
         // creo unas reservas
-        Reserva r1 = new Reserva(u1,l1,"10/02/2021","30/02/2021");
-        Reserva r2 = new Reserva(u5,l5,"10/02/2021","30/02/2021");
-        
+        Reserva r1 = new Reserva(u1, l1, "10/02/2021", "30/02/2021");
+        Reserva r2 = new Reserva(u5, l5, "10/02/2021", "30/02/2021");
+
         //añadimos reservas en lalista de reservas
         miBiblioteca.getListaReserva().add(r1);
         miBiblioteca.getListaReserva().add(r2);
-        
-        
+
         Scanner sc = new Scanner(System.in);
         int opcion;
         boolean salir = false;
@@ -145,8 +139,8 @@ public class AppBiblioteca {
             System.out.println("5.Mostrar Libros");
             System.out.println("6.Mostrar Libros disponibles");
             System.out.println("7.Salir");
-            System.out.println("8.Crear Reservas");
-            System.out.println("9.Mostrar Reservas");
+            System.out.println("9.Crear Reservas");
+            System.out.println("8.Mostrar Reservas");
             System.out.println("*****************************");
             System.out.println("");
             opcion = sc.nextByte();
@@ -156,17 +150,17 @@ public class AppBiblioteca {
 
                 case 1 -> //añadir libro
                     anadirLibro(miBiblioteca.getListaLibros());
-                    //anadirPersonalBiblioteca(listaPersonal1);  //probando anadir personal
-                    //anadirUsuario(listaUsuarios1); //probando anadirUsuario
+                //anadirPersonalBiblioteca(listaPersonal1);  //probando anadir personal
+                //anadirUsuario(listaUsuarios1); //probando anadirUsuario
 
                 case 2 -> // eliminar libro                   
                     eliminarLibro(miBiblioteca.getListaLibros());
-                    //eliminarPersonal(listaPersonal1); //probando eliminarPersonal
-                    //borrarUsuario(listaUsuarios1); //probando borrarUsuario
+                //eliminarPersonal(listaPersonal1); //probando eliminarPersonal
+                //borrarUsuario(listaUsuarios1); //probando borrarUsuario
 
                 case 3 -> // buscar libro por ISBN                   
                     buscarLibroISBN(miBiblioteca.getListaLibros());
-                    //mostrarPersonal(listaPersonal1);
+                //mostrarPersonal(listaPersonal1);
 
                 case 4 -> //buscar libro por titulo
                     buscarLibroTitulo(miBiblioteca.getListaLibros());
@@ -177,16 +171,18 @@ public class AppBiblioteca {
 
                 case 6 -> // mostrar solo disponibles libros
                     miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
+
+                case 8 ->
+                    mostrarReservas(miBiblioteca);
                     
                 case 9 ->
-                    mostrarReservas(miBiblioteca);
+                    crearReserva(miBiblioteca);
 
                 case 7 -> //salir
                     salir = true;
-                
 
-                    
-                default -> System.out.println("Las opciones disponibles del 1 a 7 ");
+                default ->
+                    System.out.println("Las opciones disponibles del 1 a 7 ");
 
             }//fin switch
 

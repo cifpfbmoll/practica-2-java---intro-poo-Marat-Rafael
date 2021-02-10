@@ -134,7 +134,7 @@ public class Libro {
     }
 
     /**
-     * 
+     *
      * @param autor se establece autor del libro
      */
     public void setAutor(String autor) {
@@ -165,11 +165,10 @@ public class Libro {
         return numCopias;
     }
 
-   
     /**
      *
-     * @param numCopias se establece numero de copias,
-     * no acepta numeros menor que uno
+     * @param numCopias se establece numero de copias, no acepta numeros menor
+     * que uno
      */
     public void setNumCopias(int numCopias) {
         while (numCopias < 1) {
@@ -208,9 +207,9 @@ public class Libro {
      */
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
-     * durante ejecucion del metodo se rellena atributos del libro, 
-     * y añade este libro a la lista que pasamos como parametro
+     * @param listaLibros pasamos como parametro un ArrayList de listado de
+     * libros durante ejecucion del metodo se rellena atributos del libro, y
+     * añade este libro a la lista que pasamos como parametro
      */
     public static void anadirLibro(ArrayList<Libro> listaLibros) {
         // creamos objeto vacio 
@@ -236,7 +235,7 @@ public class Libro {
         sc.nextLine();
 
         listaLibros.add(nuevoLibro);
-        System.out.println(nuevoLibro.toString());       
+        System.out.println(nuevoLibro.toString());
         System.out.println("Añadido con exito.");
 
     }// fin metodo anadir nuevolibro
@@ -247,19 +246,19 @@ public class Libro {
     que recibirá como parámetro el método.
     No se puede eliminar un libro que tiene reservas.
      */
-    
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
-     * primero comprobamos que numero de libro es igual a copias disponibles
-     * si es asi , elimina libro de la lista que le pasamos como parametro
+     * @param listaLibros pasamos como parametro un ArrayList de listado de
+     * libros primero comprobamos que numero de libro es igual a copias
+     * disponibles si es asi , elimina libro de la lista que le pasamos como
+     * parametro
      */
     public static void eliminarLibro(ArrayList<Libro> listaLibros) {
         System.out.println("Escribe ISBN para borrar libro de la lista");
         String isbn = sc.nextLine();
-        boolean encontrado=false;
-        int index=-1;
-        Libro libroBorrado=new Libro(); 
+        boolean encontrado = false;
+        int index = -1;
+        Libro libroBorrado = new Libro();
         //nuevo objeto Libro, usamos para mostrar que libro esta borrado
 
         //recorremos listaArray con for
@@ -278,24 +277,23 @@ public class Libro {
             }
         }// fin for
         // mostramos mensaje si libro esta eliminado o no
-        if(encontrado){
+        if (encontrado) {
             System.out.println(libroBorrado.toString());
             System.out.println("Eliminado con exito.");
-        }else{
-            System.out.println("No encontramos libro con ISBN indicado: "+isbn);
+        } else {
+            System.out.println("No encontramos libro con ISBN indicado: " + isbn);
         }
-        
+
     }// fin metodo eliminarLibro
 
     // Buscar libro por ISBN. Pedirá al usuario un ISBN, lo buscará en la lista que recibirá como parámetro el método. 
     // En caso de encontrarlo devolverá la posición en la que se encuentra, en caso contrario devolverá -1.
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
-     * donde buscamos libro
-     * @return devuelve index del libro dentro de la lista
-     * si no se encuentra devuelve -1
-     * pedimos al usuario ISBN y buscamos en la lista
+     * @param listaLibros pasamos como parametro un ArrayList de listado de
+     * libros donde buscamos libro
+     * @return devuelve index del libro dentro de la lista si no se encuentra
+     * devuelve -1 pedimos al usuario ISBN y buscamos en la lista
      */
     public static int buscarLibroISBN(ArrayList<Libro> listaLibros) {
         boolean encontrado = false;
@@ -314,9 +312,9 @@ public class Libro {
         if (encontrado) {
             System.out.println(listaLibros.get(index).toString());
         } else {
-            System.out.println("No encontrado libro con ISBN indicado "+isbn);
+            System.out.println("No encontrado libro con ISBN indicado " + isbn);
         }
-        return index;       
+        return index;
     }// fin metodo buscarLibro
 
     /*
@@ -326,8 +324,8 @@ public class Libro {
      */
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de libros
-     * preguntamos al usuario titulo del libro y lo buscamos 
+     * @param listaLibros pasamos como parametro un ArrayList de listado de
+     * libros preguntamos al usuario titulo del libro y lo buscamos
      */
     //conteins
     public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
@@ -363,6 +361,21 @@ public class Libro {
         }// fin mostrar libros de la lista que emos encontrado    
 
     }//fin metodo buscarLibroTitulo
+
+    /**
+     * metodo para comprobar si isnb existe en la lista de libros de miBiblioteca
+     * @param isbnLibroBuscado
+     * @param listaLibros
+     * @return true o false
+     */
+    public static boolean buscarLibroIsbnBoolean(String isbnLibroBuscado, ArrayList<Libro> listaLibros) {
+        // recorremos array
+        for (int i = 0; i < listaLibros.size(); i++) {
+            // devolvemos true si coincide isbn indicado con del la lista
+            return listaLibros.get(i).getISBN().equalsIgnoreCase(isbnLibroBuscado);       
+        }
+        return false;
+    }// fin metodo
 
 }// fin clase
 
