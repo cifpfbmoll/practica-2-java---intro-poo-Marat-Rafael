@@ -98,6 +98,14 @@ public class Reserva {
     public static void crearReserva(Biblioteca miBiblioteca) {
         //***************nif usuario
         String nifUsuario = pedirNifUsuario(miBiblioteca);
+        
+        // al saber nif comprobamos cuantas reservas tiene
+        boolean permiso = controlReserva(nifUsuario, miBiblioteca);
+        if(!permiso){
+            System.out.println("Tiene mas de 5 reservas actuales no puede hacer mas");
+        }
+        
+        
         //*************** Libro
         String isbnLibro = pedirIsbnLibro(miBiblioteca);
 
@@ -118,7 +126,7 @@ public class Reserva {
         Libro libroReserva;
         // al libro aplicamos metodo que devuelve libro de la lista de libros de miBiblioteca
         libroReserva = confirmarLibro(isbnLibro, miBiblioteca);
-
+        
         // usamos todos datos para crear nueva instancia de Reserva
         Reserva reserva = new Reserva(usuarioReserva, libroReserva, fechaReserva, fecheDevolver);
         miBiblioteca.getListaReserva().add(reserva);
@@ -127,6 +135,7 @@ public class Reserva {
 
     /**
      * Devuelve objeto usuario a partir del nif
+     *
      * @param nifUsuario
      * @param miBiblioteca
      * @return
@@ -151,9 +160,10 @@ public class Reserva {
 
     /**
      * devuelve objeto libro apartir de isbn
+     *
      * @param ISBN
      * @param miBiblioteca
-     * @return 
+     * @return
      */
     public static Libro confirmarLibro(String ISBN, Biblioteca miBiblioteca) {
         //creamos nuevo libro vacio, para despues copiar aqui datos de la lista
@@ -239,7 +249,7 @@ public class Reserva {
             System.out.println("NIF del usuario");
             nifUsuario = sc.nextLine();
             // llamamos al metodo para comprobar si usuario existe
-            if (buscarUsuarioNifBoolean(nifUsuario, listaUsuarios)) {
+            if (buscarUsuarioNifBoolean(nifUsuario, miBiblioteca)) {
                 nifUsuarioExiste = true;
             }
 
@@ -272,5 +282,27 @@ public class Reserva {
         } while (!isnbExiste);
         //
         return isbnLibro;
+    }// fin metodo pedirisbnlibro
+    
+    
+    /**
+     * metodo devuelve false si hay mas de 5 reservas por usuario
+     * @param nifUsuario
+     * @param miBiblioteca
+     * @return 
+     */
+    public static boolean controlReserva(String nifUsuario, Biblioteca miBiblioteca) {
+        int contadorReservas = 0;
+        ArrayList<Reserva> listaReservas = miBiblioteca.getListaReserva();
+        for (int i = 0; i < listaReservas.size(); i++) {
+            if (listaReservas.get(i).getUsuario().getNIF().equalsIgnoreCase(nifUsuario)) {
+                contadorReservas++;
+            }
+        }
+        if (contadorReservas > 5) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }// fin clase Reserva

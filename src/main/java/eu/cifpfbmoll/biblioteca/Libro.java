@@ -372,7 +372,9 @@ public class Libro {
         // recorremos array
         for (int i = 0; i < listaLibros.size(); i++) {
             // devolvemos true si coincide isbn indicado con del la lista
-            return listaLibros.get(i).getISBN().equalsIgnoreCase(isbnLibroBuscado);       
+            if(listaLibros.get(i).getISBN().equalsIgnoreCase(isbnLibroBuscado)){
+                return true;
+            }       
         }
         return false;
     }// fin metodo

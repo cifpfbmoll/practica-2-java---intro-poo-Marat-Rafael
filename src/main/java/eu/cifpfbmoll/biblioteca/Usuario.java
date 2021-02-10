@@ -415,12 +415,14 @@ public class Usuario extends Persona {
      * @param listaUsuarios
      * @return true o false
      */
-    public static boolean buscarUsuarioNifBoolean(String nifUsuarioBuscado, ArrayList<Usuario> listaUsuarios) {
+    public static boolean buscarUsuarioNifBoolean(String nifUsuarioBuscado, Biblioteca miBiblioteca) {
         // recorremos arraylist , si encontramos nif devuelve verdadero, si No - devuelve falso
+        ArrayList<Usuario> listaUsuarios = miBiblioteca.getListaUsuario();
         for (int i = 0; i < listaUsuarios.size(); i++) {
-
-            return listaUsuarios.get(i).getNIF().equalsIgnoreCase(nifUsuarioBuscado);
-        }
+            if (miBiblioteca.getListaUsuario().get(i).getNIF().equalsIgnoreCase(nifUsuarioBuscado)){
+                return true;
+            }                     
+        }    
         return false;
     }
 

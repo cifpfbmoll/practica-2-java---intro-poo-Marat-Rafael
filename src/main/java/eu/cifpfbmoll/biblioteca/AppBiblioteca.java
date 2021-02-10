@@ -42,6 +42,7 @@ public class AppBiblioteca {
         Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1, listaReserva1);
 
         // creamos algunos Usuarios de la biblioteca
+        //public Usuario(String nombre, String apellido, String NIF, String contrasenia) 
         Usuario u1 = new Usuario("Aarón", "Fernández", "111", "aaron");
         Usuario u2 = new Usuario("Alex", "Baskota", "112", "alex");
         Usuario u3 = new Usuario("Jaume", "Fullana", "113", "jaume");
