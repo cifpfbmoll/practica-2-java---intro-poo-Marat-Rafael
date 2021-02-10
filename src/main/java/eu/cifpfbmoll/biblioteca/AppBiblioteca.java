@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static eu.cifpfbmoll.biblioteca.Persona.anadirPersonalBiblioteca;
 import static eu.cifpfbmoll.biblioteca.Persona.eliminarPersonal;
 import static eu.cifpfbmoll.biblioteca.Persona.mostrarPersonal;
+import static eu.cifpfbmoll.biblioteca.Reserva.mostrarReservas;
 
 //import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class AppBiblioteca {
         
         Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1,listaReserva1);
         
-        
+
         
         
         // creamos algunos Usuarios de la biblioteca
@@ -121,6 +122,15 @@ public class AppBiblioteca {
         miBiblioteca.getListaPersonal().add(p4);
         miBiblioteca.getListaPersonal().add(p5);
 
+        // creo unas reservas
+        Reserva r1 = new Reserva(u1,l1,"10/02/2021","30/02/2021");
+        Reserva r2 = new Reserva(u5,l5,"10/02/2021","30/02/2021");
+        
+        //añadimos reservas en lalista de reservas
+        miBiblioteca.getListaReserva().add(r1);
+        miBiblioteca.getListaReserva().add(r2);
+        
+        
         Scanner sc = new Scanner(System.in);
         int opcion;
         boolean salir = false;
@@ -167,10 +177,15 @@ public class AppBiblioteca {
 
                 case 6 -> // mostrar solo disponibles libros
                     miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
+                    
+                case 9 ->
+                    mostrarReservas(miBiblioteca);
 
                 case 7 -> //salir
                     salir = true;
+                
 
+                    
                 default -> System.out.println("Las opciones disponibles del 1 a 7 ");
 
             }//fin switch

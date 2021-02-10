@@ -179,7 +179,7 @@ public class Reserva {
 
     }// fin metodo confirmarLibro
     
-    public void mostrarReservas(Biblioteca miBiblioteca){
+    public static void mostrarReservas(Biblioteca miBiblioteca){
         ArrayList <Reserva> listaReservas = miBiblioteca.getListaReserva();
         for (int i = 0; i < listaReservas.size(); i++) {
             System.out.println(listaReservas.get(i).toString());           
