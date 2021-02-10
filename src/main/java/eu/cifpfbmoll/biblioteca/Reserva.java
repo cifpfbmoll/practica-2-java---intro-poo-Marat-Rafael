@@ -6,6 +6,7 @@ así como listado de reservas realizadas por un usuario de la biblioteca.
  */
 package eu.cifpfbmoll.biblioteca;
 
+import static eu.cifpfbmoll.biblioteca.Usuario.buscarUsuarioNif;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class Reserva {
      * @param libro
      * @param usuario
      */
-    public Reserva( Usuario usuario, Libro libro, String fechaReserva, String fechaDevolucion ) {
+    public Reserva(Usuario usuario, Libro libro, String fechaReserva, String fechaDevolucion) {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaReserva = fechaReserva;
@@ -92,27 +93,137 @@ public class Reserva {
         return "Reserva { " + "usuario=" + usuario + ", libro=" + libro + ", fechaReserva=" + fechaReserva + ", fechaDevolucion=" + fechaDevolucion + '}';
     }
 
-    public static void crearReserva(ArrayList <Reserva> listaReservas) {
+    public static void crearReserva(Biblioteca miBiblioteca) {
+        // variable para gurdar nif del usuario para reserva
         System.out.println("NIF del usuario");
         String nifUsuario = sc.nextLine();
-
+        
+        // variable para guardar isbn del libro para reservar
         System.out.println("ISBN del libro");
         String isbnLibro = sc.nextLine();
 
+        // indicamos fecha del inicio
         System.out.println("La fecha de hoy: ");
         String fechaReserva = sc.nextLine();
 
+        //indicamos fecha del final
         System.out.println("Fecha para devolver libro: ");
         String fecheDevolver = sc.nextLine();
-        
-        // como buscar en la lista de la biblioteca desde aqui ? para buscar usuario en su lista y libro en su lista      
-        // instancia de miBiblioteca esta en AppBiblioteca
-        Usuario usuario = new Usuario();
-               
-        Libro libro = new Libro();
-        
-        Reserva reserva = new Reserva();
-        
-    }
 
-}
+        // creamos nueva instancia del usuario
+        Usuario usuarioReserva;
+        // le aplicamos metodo que nos devuelve objeto Usuario existente de miBiblioteca
+        usuarioReserva = confirmarUsuario(nifUsuario, miBiblioteca);
+
+        // creamos nueva instancia de libro
+        Libro libroReserva;
+        // al libro aplicamos metodo que devuelve libro de la lista de libros de miBiblioteca
+        libroReserva = confirmarLibro(isbnLibro, miBiblioteca);
+
+        // usamos todos datos para crear nueva instancia de Reserva
+        Reserva reserva = new Reserva(usuarioReserva, libroReserva, fechaReserva, fecheDevolver);
+        miBiblioteca.getListaReserva().add(reserva);
+
+    }//fin metodo creaReserva
+
+    /**
+     *
+     * @param nifUsuario
+     * @param miBiblioteca
+     * @return
+     */
+    public static Usuario confirmarUsuario(String nifUsuario, Biblioteca miBiblioteca) {
+        // variable para listaUsuarios de miBiblioteca
+        ArrayList<Usuario> listaUsuarios = miBiblioteca.getListaUsuario();
+        //un nuevo objeto usuariovacio donde copiamos datos si usuario existe
+        Usuario usuarioConfirmado = new Usuario();
+        boolean encontrado = false;
+
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            // con for acedemos a cada elemento de listaUsuarios de mi biblioteca y comprobamos nif
+            if (listaUsuarios.get(i).getNIF().equalsIgnoreCase(nifUsuario)) {
+                encontrado = true;
+                // guardamos usuario de la lista en variable usuarioConfirmado
+                usuarioConfirmado = miBiblioteca.getListaUsuario().get(i);
+            }
+        }
+        // si encontramos usuario lo devuelve
+        if (encontrado) {
+            return usuarioConfirmado;
+        } else {
+            // ??? pero si no lo encontramos como podemos indicarlo  ??? 
+            return usuarioConfirmado;
+        }
+    }// fin metodo ConfirmarUsuario
+
+    public static Libro confirmarLibro(String ISBN, Biblioteca miBiblioteca) {
+        //creamos nuevo libro vacio, para despues copiar aqui datos de la lista
+        Libro libroConfirmado = new Libro();
+        boolean encontrado = false;
+        // creamos variable para la lista de libros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
+
+        for (int i = 0; i < listaLibros.size(); i++) {
+            if (listaLibros.get(i).getISBN().equalsIgnoreCase(ISBN)) {
+                encontrado = true;
+                libroConfirmado = listaLibros.get(i);
+            }
+        }
+        if (encontrado) {
+            // si lo encontramos devolvemos objeto libro
+            return libroConfirmado;
+        } else {
+            // y si no ?????  que devolvemos???
+            return libroConfirmado;
+        }
+
+    }// fin metodo confirmarLibro
+    
+    public void mostrarReservas(Biblioteca miBiblioteca){
+        ArrayList <Reserva> listaReservas = miBiblioteca.getListaReserva();
+        for (int i = 0; i < listaReservas.size(); i++) {
+            System.out.println(listaReservas.get(i).toString());           
+        }
+        
+        
+    }//fin mostrarReservas
+
+    public void buscarReservaUsuarioNombre(String nombreUsuario, Biblioteca miBiblioteca) {
+        int contador = 0;
+        // creamos arraylist para reservas de mibiblioteca
+        ArrayList<Reserva> listaReserva = miBiblioteca.getListaReserva();
+        
+        //nuevo objeto de resera para gurdar reserva encontrada
+        Reserva reservaEncontrada =new Reserva();
+        
+        //ArrayList para gurdar reservas encontradas
+        ArrayList <Reserva> listaReservaEncontrada = new ArrayList();
+        //
+        boolean encontrado = false;
+        
+        // recorremos arraylist
+        for (int i = 0; i < listaReserva.size(); i++) {
+            // si el nombre de usuario coincide 
+            if (listaReserva.get(i).getUsuario().getNombre().equalsIgnoreCase(nombreUsuario)) {
+                encontrado = true;
+                contador++;
+                // objeto Reserva que encontramos guardamos en objeto reserva
+                reservaEncontrada = listaReserva.get(i);
+                // este objeto metemos en la lista de Reservas Encontradas
+                listaReservaEncontrada.add(this);               
+            }
+
+        }
+        if(encontrado){
+            System.out.println("Con el nombre del usuario: "+nombreUsuario+" encontramos "+contador+" reserva/s");
+            for (int i = 0; i < listaReservaEncontrada.size(); i++) {
+                System.out.println(listaReservaEncontrada.get(i).toString());
+                
+            }
+        }else{
+            System.out.println("Con el nombre del usuario "+nombreUsuario+" no encontramos ninguna reserva");
+        }
+
+    }// fin metodo buscarReservaNombreUsuario
+
+}// fin clase Reserva

@@ -178,7 +178,7 @@ public class Usuario extends Persona {
      * @param listaUsuarios pasamos como parametro ArrayList de usuarios
      * buscamos por el nombre
      */
-    public void buscarUsuarioNombre(ArrayList<Usuario> listaUsuarios) {
+    public static void buscarUsuarioNombre(ArrayList<Usuario> listaUsuarios) {
         // declaramos un nuevo ArrayList donde guardmos todas personas con este nombre encontrado
         ArrayList<Usuario> listaEncontrados = new ArrayList<>();
 
@@ -193,7 +193,7 @@ public class Usuario extends Persona {
             if (listaUsuarios.get(i).getNombre().equalsIgnoreCase(nombreBuscado)) {
                 contador++;
                 encontrado = true;
-                listaEncontrados.add(this);
+                listaEncontrados.add(listaUsuarios.get(i));
             }
         }
         if (encontrado) {
@@ -211,7 +211,7 @@ public class Usuario extends Persona {
      * @param listaUsuarios pasamos como parametro un ArrayList de usuarios
      * buscamos por el apellido
      */
-    public void buscarUsuarioApellido(ArrayList<Usuario> listaUsuarios) {
+    public static void buscarUsuarioApellido(ArrayList<Usuario> listaUsuarios) {
         //creamos un nuevo ArrayList para guardar todas personas encontradas
         ArrayList<Usuario> listaEncontrados = new ArrayList<>();
 
@@ -226,7 +226,7 @@ public class Usuario extends Persona {
             if (listaUsuarios.get(i).getApellido().equalsIgnoreCase(apellidoBuscado)) {
                 contador++;
                 encontrado = true;
-                listaEncontrados.add(this);
+                listaEncontrados.add(listaUsuarios.get(i));
             }
         }
         //si encontramos alguno mostramos cuantos encontramos y recorremos ArrayList de usuariosEncontrados
@@ -245,7 +245,7 @@ public class Usuario extends Persona {
      * @param listaUsuarios pasamos como parametro Arraylist de los usuarios y
      * buscamos por NIF
      */
-    public void buscarUsuarioNif(ArrayList<Usuario> listaUsuarios) {
+    public static void buscarUsuarioNif(ArrayList<Usuario> listaUsuarios) {
         // declaamos y iniciamos nuevo ArrayList para guardar aqui todos usuarios encontrados
         // en teoria NIF es unico, pero para evitar posibles errores 
         ArrayList<Usuario> listaEncontrados = new ArrayList<>();
@@ -256,11 +256,11 @@ public class Usuario extends Persona {
         System.out.println("Escribe NIF del usuario que buscamos: ");
         String nifBuscado = sc.nextLine();
 
-        for (int i = 0; i < listaEncontrados.size(); i++) {
-            if (listaEncontrados.get(i).getNIF().equalsIgnoreCase(nifBuscado)) {
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (listaUsuarios.get(i).getNIF().equalsIgnoreCase(nifBuscado)) {
                 contador++;
                 encontrado = true;
-                listaEncontrados.add(this);
+                listaEncontrados.add(listaUsuarios.get(i));
             }
         }
         if (encontrado) {

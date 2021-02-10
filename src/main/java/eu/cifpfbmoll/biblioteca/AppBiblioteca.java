@@ -33,11 +33,16 @@ public class AppBiblioteca {
         ArrayList<Persona> listaPersonal1 = new ArrayList<>();
         //creamos lista de libros para añadir a la biblioteca
         ArrayList<Libro> listaLibros1 = new ArrayList<>();
+        // creamos ArrayList para las reservas 
+        ArrayList <Reserva> listaReserva1 = new ArrayList();
+        
         //creamos biblioteca con constructor con todos parametros , damos nombre y añadimos listaPersonal1 y listaLibro1, listaUsuarios
         
-        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1);
+        Biblioteca miBiblioteca = new Biblioteca("Biblioteca Borja Moll", listaLibros1, listaPersonal1, listaUsuarios1,listaReserva1);
         
-
+        
+        
+        
         // creamos algunos Usuarios de la biblioteca
         Usuario u1 = new Usuario("Aarón", "Fernández", "111", "aaron");
         Usuario u2 = new Usuario("Alex", "Baskota", "112", "alex");
@@ -59,8 +64,7 @@ public class AppBiblioteca {
         miBiblioteca.getListaUsuario().add(u7);
         miBiblioteca.getListaUsuario().add(u8);
         miBiblioteca.getListaUsuario().add(u9);
-        
-        
+                
 
 
         //creamos algunos libros para la biblioteca para probar
@@ -131,6 +135,8 @@ public class AppBiblioteca {
             System.out.println("5.Mostrar Libros");
             System.out.println("6.Mostrar Libros disponibles");
             System.out.println("7.Salir");
+            System.out.println("8.Crear Reservas");
+            System.out.println("9.Mostrar Reservas");
             System.out.println("*****************************");
             System.out.println("");
             opcion = sc.nextByte();

@@ -26,6 +26,7 @@ public class Biblioteca {
     private ArrayList<Libro> listaLibros;
     private ArrayList<Persona> listaPersonal;
     private ArrayList<Usuario> listaUsuario;
+    private ArrayList<Reserva> listaReserva;
 
     //constructores
     // constructor vacio
@@ -72,7 +73,38 @@ public class Biblioteca {
         this.listaPersonal = listaPersonal;
         this.listaUsuario = listaUsuario;
     }
-    // metodos getter/setter
+
+    /**
+     *  NUEVO CONSTRUCTOR CON LISTA DE RESERVAS
+     * @param nombre
+     * @param listaLibros
+     * @param listaPersonal
+     * @param listaUsuario
+     * @param listaReserva 
+     */
+    public Biblioteca(String nombre, ArrayList<Libro> listaLibros, ArrayList<Persona> listaPersonal, ArrayList<Usuario> listaUsuario, ArrayList<Reserva> listaReserva) {
+        this.nombre = nombre;
+        this.listaLibros = listaLibros;
+        this.listaPersonal = listaPersonal;
+        this.listaUsuario = listaUsuario;
+        this.listaReserva = listaReserva;
+    }
+        // metodos getter/setter
+    /**
+     * 
+     * @return ArrayList con lista de reservas
+     */
+    public ArrayList<Reserva> getListaReserva() {
+        return listaReserva;
+    }
+
+   /**
+    * 
+    * @param listaReserva se estalece nuevo ArrayList de Reservas
+    */
+    public void setListaReserva(ArrayList<Reserva> listaReserva) {
+        this.listaReserva = listaReserva;
+    }
 
     /**
      * @return ArrayList con lista de los usuarios
