@@ -6,9 +6,9 @@ así como listado de reservas realizadas por un usuario de la biblioteca.
  */
 package eu.cifpfbmoll.biblioteca;
 
-import static eu.cifpfbmoll.biblioteca.Libro.buscarLibroIsbnBoolean;
-import static eu.cifpfbmoll.biblioteca.Usuario.buscarUsuarioNif;
-import static eu.cifpfbmoll.biblioteca.Usuario.buscarUsuarioNifBoolean;
+//import static eu.cifpfbmoll.biblioteca.Libro.*;
+//import static eu.cifpfbmoll.biblioteca.Usuario.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -51,7 +51,6 @@ public class Reserva {
 
     public static int getIDreserva() {
         return IDreserva;
-
     }
 
     public static void setIDreserva(int IDreserva) {
@@ -254,7 +253,7 @@ public class Reserva {
             System.out.println("NIF del usuario");
             nifUsuario = sc.nextLine();
             // llamamos al metodo para comprobar si usuario existe
-            if (buscarUsuarioNifBoolean(nifUsuario, miBiblioteca)) {
+            if (Usuario.buscarUsuarioNifBoolean(nifUsuario, miBiblioteca)) {
                 nifUsuarioExiste = true;
             }
 
@@ -281,7 +280,7 @@ public class Reserva {
             System.out.println("ISBN del libro");
             isbnLibro = sc.nextLine();
             // llamamos al metodo para comprobar que el libro  existe en la lista 
-            if (buscarLibroIsbnBoolean(isbnLibro, listaLibros)) {
+            if (Libro.buscarLibroIsbnBoolean(isbnLibro, listaLibros)) {
                 isnbExiste = true;
             }
         } while (!isnbExiste);

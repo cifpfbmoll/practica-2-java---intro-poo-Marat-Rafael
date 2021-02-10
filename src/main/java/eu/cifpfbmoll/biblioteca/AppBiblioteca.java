@@ -1,18 +1,11 @@
 package eu.cifpfbmoll.biblioteca;
 
-import static eu.cifpfbmoll.biblioteca.Libro.anadirLibro;
-import static eu.cifpfbmoll.biblioteca.Libro.buscarLibroISBN;
-import static eu.cifpfbmoll.biblioteca.Libro.buscarLibroTitulo;
-import static eu.cifpfbmoll.biblioteca.Libro.eliminarLibro;
-import static eu.cifpfbmoll.biblioteca.Usuario.anadirUsuario;
-import static eu.cifpfbmoll.biblioteca.Usuario.borrarUsuario;
-import static eu.cifpfbmoll.biblioteca.Usuario.mostrarUsuarios;
+//import static eu.cifpfbmoll.biblioteca.Reserva.*;
+//import static eu.cifpfbmoll.biblioteca.Libro.*;
+//import static eu.cifpfbmoll.biblioteca.Usuario.*;
+//import static eu.cifpfbmoll.biblioteca.Persona.*;
 import java.util.ArrayList;
-import static eu.cifpfbmoll.biblioteca.Persona.anadirPersonalBiblioteca;
-import static eu.cifpfbmoll.biblioteca.Persona.eliminarPersonal;
-import static eu.cifpfbmoll.biblioteca.Persona.mostrarPersonal;
-import static eu.cifpfbmoll.biblioteca.Reserva.crearReserva;
-import static eu.cifpfbmoll.biblioteca.Reserva.mostrarReservas;
+
 
 //import java.util.ArrayList;
 import java.util.Scanner;
@@ -159,21 +152,21 @@ public class AppBiblioteca {
             switch (opcion) {
 
                 case 1 -> //añadir libro
-                    anadirLibro(miBiblioteca.getListaLibros());
+                    Libro.anadirLibro(miBiblioteca.getListaLibros());
                 //anadirPersonalBiblioteca(listaPersonal1);  //probando anadir personal
                 //anadirUsuario(listaUsuarios1); //probando anadirUsuario
 
                 case 2 -> // eliminar libro                   
-                    eliminarLibro(miBiblioteca.getListaLibros());
+                    Libro.eliminarLibro(miBiblioteca.getListaLibros());
                 //eliminarPersonal(listaPersonal1); //probando eliminarPersonal
                 //borrarUsuario(listaUsuarios1); //probando borrarUsuario
 
                 case 3 -> // buscar libro por ISBN                   
-                    buscarLibroISBN(miBiblioteca.getListaLibros());
+                    Libro.buscarLibroISBN(miBiblioteca.getListaLibros());
                 //mostrarPersonal(listaPersonal1);
 
                 case 4 -> //buscar libro por titulo
-                    buscarLibroTitulo(miBiblioteca.getListaLibros());
+                    Libro.buscarLibroTitulo(miBiblioteca.getListaLibros());
 
                 case 5 -> // mostrar todos libros
                     miBiblioteca.mostrarTodosLibros(miBiblioteca.getListaLibros());
@@ -183,13 +176,13 @@ public class AppBiblioteca {
                     miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
 
                 case 7 ->
-                    mostrarReservas(miBiblioteca);
+                    Reserva.mostrarReservas(miBiblioteca);
 
                 case 8 ->
-                    crearReserva(miBiblioteca);
+                    Reserva.crearReserva(miBiblioteca);
                     
                 case 9 ->
-                    mostrarReservas(miBiblioteca);
+                    Reserva.mostrarReservas(miBiblioteca);
 
                 case 0 -> //salir
                     salir = true;
