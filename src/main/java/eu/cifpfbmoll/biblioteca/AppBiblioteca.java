@@ -119,7 +119,7 @@ public class AppBiblioteca {
         Reserva r5 = new Reserva(u1, l31, "10/02/2021", "30/02/2021");
         Reserva r6 = new Reserva(u1, l32, "10/02/2021", "30/02/2021");
 
-        //añadimos reservas en lalista de reservas
+        //añadimos reservas en la lista de reservas
         miBiblioteca.getListaReserva().add(r1);
         miBiblioteca.getListaReserva().add(r2);
         miBiblioteca.getListaReserva().add(r3);

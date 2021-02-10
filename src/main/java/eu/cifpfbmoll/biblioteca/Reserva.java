@@ -8,7 +8,6 @@ package eu.cifpfbmoll.biblioteca;
 
 //import static eu.cifpfbmoll.biblioteca.Libro.*;
 //import static eu.cifpfbmoll.biblioteca.Usuario.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -22,6 +21,7 @@ public class Reserva {
 
     //atributos
     private static int IDreserva;
+    private int id;
     private Usuario usuario = new Usuario(); // si no iniciamos puede haver error null exception
     private Libro libro = new Libro();
     private String fechaReserva;
@@ -32,6 +32,7 @@ public class Reserva {
      */
     public Reserva() {
         IDreserva++;
+        id = IDreserva;
     }
 
     /**
@@ -42,6 +43,7 @@ public class Reserva {
      * @param usuario
      */
     public Reserva(Usuario usuario, Libro libro, String fechaReserva, String fechaDevolucion) {
+        this.id = IDreserva;
         this.usuario = usuario;
         this.libro = libro;
         this.fechaReserva = fechaReserva;
@@ -89,51 +91,53 @@ public class Reserva {
         this.fechaDevolucion = fechaDevolucion;
     }
 
+    public int getId() {
+        return id;
+    }
+
+   
     @Override
     public String toString() {
-        return "Reserva { " + "usuario=" + usuario + ", libro=" + libro + ", fechaReserva=" + fechaReserva + ", fechaDevolucion=" + fechaDevolucion + '}';
+        return "Reserva " + id + " { " + "usuario=" + usuario + ", libro=" + libro + ", fechaReserva=" + fechaReserva + ", fechaDevolucion=" + fechaDevolucion + '}';
     }
 
     public static void crearReserva(Biblioteca miBiblioteca) {
         //***************nif usuario
         String nifUsuario = pedirNifUsuario(miBiblioteca);
-        
+
         // al saber nif comprobamos cuantas reservas tiene
         boolean permiso = controlReserva(nifUsuario, miBiblioteca);
         // si no tiene permiso salta mesaje 
-        if(!permiso){
+        if (!permiso) {
             System.out.println("Tiene mas de 5 reservas actuales no puede hacer mas");
-        }else{
+        } else {
             // si tiene permiso siguimos con creacion de la reserva
-                    //*************** Libro
-        String isbnLibro = pedirIsbnLibro(miBiblioteca);
+            //*************** Libro
+            String isbnLibro = pedirIsbnLibro(miBiblioteca);
 
-        // indicamos fecha del inicio
-        System.out.println("La fecha de hoy: ");
-        String fechaReserva = sc.nextLine();
+            // indicamos fecha del inicio
+            System.out.println("La fecha de hoy: ");
+            String fechaReserva = sc.nextLine();
 
-        //indicamos fecha del final
-        System.out.println("Fecha para devolver libro: ");
-        String fecheDevolver = sc.nextLine();
+            //indicamos fecha del final
+            System.out.println("Fecha para devolver libro: ");
+            String fecheDevolver = sc.nextLine();
 
-        // creamos nueva instancia del usuario
-        Usuario usuarioReserva;
-        // le aplicamos metodo que nos devuelve objeto Usuario existente de miBiblioteca
-        usuarioReserva = confirmarUsuario(nifUsuario, miBiblioteca);
+            // creamos nueva instancia del usuario
+            Usuario usuarioReserva;
+            // le aplicamos metodo que nos devuelve objeto Usuario existente de miBiblioteca
+            usuarioReserva = confirmarUsuario(nifUsuario, miBiblioteca);
 
-        // creamos nueva instancia de libro
-        Libro libroReserva;
-        // al libro aplicamos metodo que devuelve libro de la lista de libros de miBiblioteca
-        libroReserva = confirmarLibro(isbnLibro, miBiblioteca);
-        
-        // usamos todos datos para crear nueva instancia de Reserva
-        Reserva reserva = new Reserva(usuarioReserva, libroReserva, fechaReserva, fecheDevolver);
-        miBiblioteca.getListaReserva().add(reserva);
-            
+            // creamos nueva instancia de libro
+            Libro libroReserva;
+            // al libro aplicamos metodo que devuelve libro de la lista de libros de miBiblioteca
+            libroReserva = confirmarLibro(isbnLibro, miBiblioteca);
+
+            // usamos todos datos para crear nueva instancia de Reserva
+            Reserva reserva = new Reserva(usuarioReserva, libroReserva, fechaReserva, fecheDevolver);
+            miBiblioteca.getListaReserva().add(reserva);
+
         }
-        
-        
-
 
     }//fin metodo creaReserva
 
@@ -287,13 +291,13 @@ public class Reserva {
         //
         return isbnLibro;
     }// fin metodo pedirisbnlibro
-    
-    
+
     /**
      * metodo devuelve false si hay mas de 5 reservas por usuario
+     *
      * @param nifUsuario
      * @param miBiblioteca
-     * @return 
+     * @return
      */
     public static boolean controlReserva(String nifUsuario, Biblioteca miBiblioteca) {
         int contadorReservas = 0;
@@ -308,5 +312,14 @@ public class Reserva {
         } else {
             return true;
         }
+    }// fin metodo controlReserva
+
+    public static void borrarReserva(int idReserva, ArrayList<Reserva> listaReserva) {
+        for (int i = 0; i < listaReserva.size(); i++) {
+           //listaReserva.get(i).getId().eq
+            
+            
+        }
+
     }
 }// fin clase Reserva
