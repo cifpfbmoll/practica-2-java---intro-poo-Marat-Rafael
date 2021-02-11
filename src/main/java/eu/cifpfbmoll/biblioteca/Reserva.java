@@ -51,14 +51,6 @@ public class Reserva {
         IDreserva++;
     }
 
-    public static int getIDreserva() {
-        return IDreserva;
-    }
-
-    public static void setIDreserva(int IDreserva) {
-        Reserva.IDreserva = IDreserva;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -95,7 +87,6 @@ public class Reserva {
         return id;
     }
 
-   
     @Override
     public String toString() {
         return "Reserva " + id + " { " + "usuario=" + usuario + ", libro=" + libro + ", fechaReserva=" + fechaReserva + ", fechaDevolucion=" + fechaDevolucion + '}';
@@ -314,12 +305,36 @@ public class Reserva {
         }
     }// fin metodo controlReserva
 
-    public static void borrarReserva(int idReserva, ArrayList<Reserva> listaReserva) {
-        for (int i = 0; i < listaReserva.size(); i++) {
-           //listaReserva.get(i).getId().eq
-            
-            
-        }
+    public static void borrarReserva(Biblioteca miBiblioteca) {
+        //creamos un objeto de la Reserva para mostrar la reserva que borramos
+        Reserva reservaBorrar = new Reserva();
+        
+        // pedimos id para borrar
+        System.out.println("Indica ID de la reserva para borrar");
+        int idBorrar = sc.nextInt();
 
-    }
+        ArrayList<Reserva> listaReserva = miBiblioteca.getListaReserva();
+        for (int i = 0; i < listaReserva.size(); i++) {
+            // como es un numero usamos == para comparar
+            if (listaReserva.get(i).getId() == idBorrar) {
+                reservaBorrar = listaReserva.get(i);
+                System.out.println(reservaBorrar.toString());
+                System.out.println("Estas seguro que desea borrar reserva " + idBorrar + " ?");
+                System.out.println("1 - si borramos");
+                System.out.println("0 - no volvemos");
+                int opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1:
+                        listaReserva.remove(i);
+                        
+                        System.out.println("Reserva "+idBorrar+" borrado con exito");
+                        break;
+                    case 2:
+                        break;
+                }
+
+            }
+        }
+    }//fin metodo borrarReserva
+    
 }// fin clase Reserva

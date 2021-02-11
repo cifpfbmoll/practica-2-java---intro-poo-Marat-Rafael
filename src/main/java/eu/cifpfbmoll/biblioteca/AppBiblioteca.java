@@ -182,7 +182,7 @@ public class AppBiblioteca {
                     Reserva.crearReserva(miBiblioteca);
                     
                 case 9 ->
-                    Reserva.mostrarReservas(miBiblioteca);
+                    Reserva.borrarReserva(miBiblioteca);
 
                 case 0 -> //salir
                     salir = true;
