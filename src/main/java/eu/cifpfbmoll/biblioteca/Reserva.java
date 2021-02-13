@@ -275,7 +275,7 @@ public class Reserva {
             System.out.println("ISBN del libro");
             isbnLibro = sc.nextLine();
             // llamamos al metodo para comprobar que el libro  existe en la lista 
-            if (Libro.buscarLibroIsbnBoolean(isbnLibro, listaLibros)) {
+            if (Libro.buscarLibroIsbnBoolean(isbnLibro, miBiblioteca)) {
                 isnbExiste = true;
             }
         } while (!isnbExiste);

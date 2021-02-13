@@ -207,11 +207,11 @@ public class Libro {
      */
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de
-     * libros durante ejecucion del metodo se rellena atributos del libro, y
-     * añade este libro a la lista que pasamos como parametro
+     * @param miBiblioteca
      */
-    public static void anadirLibro(ArrayList<Libro> listaLibros) {
+    public static void anadirLibro(Biblioteca miBiblioteca) {
+        // creamos arraylist para listaLibros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
         // creamos objeto vacio 
         Libro nuevoLibro = new Libro();
 
@@ -248,12 +248,12 @@ public class Libro {
      */
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de
-     * libros primero comprobamos que numero de libro es igual a copias
-     * disponibles si es asi , elimina libro de la lista que le pasamos como
-     * parametro
+     * @param miBiblioteca
      */
-    public static void eliminarLibro(ArrayList<Libro> listaLibros) {
+    public static void eliminarLibro(Biblioteca miBiblioteca) {
+        // creamos ArrayList para acceder a la listaLibros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
+
         System.out.println("Escribe ISBN para borrar libro de la lista");
         String isbn = sc.nextLine();
         boolean encontrado = false;
@@ -290,12 +290,13 @@ public class Libro {
     // En caso de encontrarlo devolverá la posición en la que se encuentra, en caso contrario devolverá -1.
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de
-     * libros donde buscamos libro
+     * @param miBiblioteca
      * @return devuelve index del libro dentro de la lista si no se encuentra
      * devuelve -1 pedimos al usuario ISBN y buscamos en la lista
      */
-    public static int buscarLibroISBN(ArrayList<Libro> listaLibros) {
+    public static int buscarLibroISBN(Biblioteca miBiblioteca) {
+        // creamos ArrayList para acceder a la listaLibros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
         boolean encontrado = false;
         System.out.println("Escribe ISBN para buscar: ");
         String isbn = sc.nextLine();
@@ -324,11 +325,12 @@ public class Libro {
      */
     /**
      *
-     * @param listaLibros pasamos como parametro un ArrayList de listado de
-     * libros preguntamos al usuario titulo del libro y lo buscamos
+     * @param miBiblioteca
      */
     //conteins
-    public static void buscarLibroTitulo(ArrayList<Libro> listaLibros) {
+    public static void buscarLibroTitulo(Biblioteca miBiblioteca) {
+        // creamos ArrayList para acceder a la listaLibros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
         boolean encontrado = false;
         //creamos nuevo objeto vacio libro
         Libro libro;
@@ -337,7 +339,7 @@ public class Libro {
         String titulo = sc.nextLine();
 
         // declaramos una nueva lista para guardar todos titulos que encontramos
-        ArrayList<Libro> listaLibrosEncontrados = new ArrayList<Libro>();
+        ArrayList<Libro> listaLibrosEncontrados = new ArrayList<>();
 
         // recorremos array de libros que nos pasa como parametro
         for (int i = 0; i < listaLibros.size(); i++) {
@@ -363,18 +365,22 @@ public class Libro {
     }//fin metodo buscarLibroTitulo
 
     /**
-     * metodo para comprobar si isnb existe en la lista de libros de miBiblioteca
+     * metodo para comprobar si isnb existe en la lista de libros de
+     * miBiblioteca
+     *
      * @param isbnLibroBuscado
-     * @param listaLibros
+     * @param miBiblioteca
      * @return true o false
      */
-    public static boolean buscarLibroIsbnBoolean(String isbnLibroBuscado, ArrayList<Libro> listaLibros) {
+    public static boolean buscarLibroIsbnBoolean(String isbnLibroBuscado, Biblioteca miBiblioteca) {
+        // creamos ArrayList para acceder a la listaLibros
+        ArrayList<Libro> listaLibros = miBiblioteca.getListaLibros();
         // recorremos array
         for (int i = 0; i < listaLibros.size(); i++) {
             // devolvemos true si coincide isbn indicado con del la lista
-            if(listaLibros.get(i).getISBN().equalsIgnoreCase(isbnLibroBuscado)){
+            if (listaLibros.get(i).getISBN().equalsIgnoreCase(isbnLibroBuscado)) {
                 return true;
-            }       
+            }
         }
         return false;
     }// fin metodo

@@ -6,7 +6,6 @@ package eu.cifpfbmoll.biblioteca;
 //import static eu.cifpfbmoll.biblioteca.Persona.*;
 import java.util.ArrayList;
 
-
 //import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,7 +76,7 @@ public class AppBiblioteca {
         Libro l31 = new Libro("111133333", "Guerra y paz 2", "Tolstoi", "La Pajarita Roja", 20, 20);
         Libro l32 = new Libro("111144444", "Guerra y paz 3", "Tolstoi", "La Pajarita Roja", 20, 20);
         Libro l33 = new Libro("111155555", "Guerra y paz 4", "Tolstoi", "La Pajarita Roja", 20, 20);
-
+        
         miBiblioteca.getListaLibros().add(l1);
         miBiblioteca.getListaLibros().add(l2);
         miBiblioteca.getListaLibros().add(l3);
@@ -126,73 +125,154 @@ public class AppBiblioteca {
         miBiblioteca.getListaReserva().add(r4);
         miBiblioteca.getListaReserva().add(r5);
         miBiblioteca.getListaReserva().add(r6);
-
+        
         Scanner sc = new Scanner(System.in);
-        int opcion;
-        boolean salir = false;
+        // para opciones del menu
+        byte opcionUsuario;
+        byte opcionAdmin;
+        byte opcion;
 
+        // boolean para salir
+        boolean salir = false;
+        boolean salirAdmin = false;
+        boolean salirUsuario = false;
+        
         do {
             System.out.println("");
             System.out.println("************MENU************");
-            System.out.println("1.Añadir Libro");
-            System.out.println("2.Eliminar Libro");
-            System.out.println("3.Buscar Libro por ISBN");
-            System.out.println("4.Buscar Libro por titulo");
-            System.out.println("5.Mostrar Libros");
-            System.out.println("6.Mostrar Libros disponibles");
-            System.out.println("7.Mostrar Reservas");
-            System.out.println("8.Crear Reservas");
-            System.out.println("9.Borrar Reserva");
-            System.out.println("0.Salir");
+            System.out.println("1.ADMINISTRADOR");
+            System.out.println("2.USUARIO");
+            System.out.println("0.SALIR");
             System.out.println("*****************************");
             System.out.println("");
             opcion = sc.nextByte();
             sc.nextLine();
-
+            
             switch (opcion) {
+                
+                case 1:
+                    do {
+                        System.out.println("");
+                        System.out.println("********ADMINISTRADOR***********");
+                        System.out.println("************MENU************");
+                        System.out.println("    1.Añadir Libro");
+                        System.out.println("    2.Eliminar Libro");
+                        System.out.println("    3.Añadir Personal");
+                        System.out.println("    4.Eliminar Personal");
+                        System.out.println("    5.Mostrar Libros");
+                        System.out.println("    6.Mostrar Personal");
+                        System.out.println("    7.Añadir Usuario");
+                        System.out.println("    8.Borrar Usuario");
+                        System.out.println("    9.Buscar Usuario");
+                        System.out.println("    10 Mostrar Reservas");
+                        System.out.println("    0.Salir");
+                        System.out.println("*****************************");
+                        System.out.println("");
+                        opcionAdmin = sc.nextByte();
+                        sc.nextLine();
+                        switch (opcionAdmin) {
+                            case 1:
+                                Libro.anadirLibro(miBiblioteca);
+                                break;
+                            case 2:
+                                Libro.eliminarLibro(miBiblioteca);
+                                break;
+                            case 3:
+                                Persona.anadirPersonalBiblioteca(listaPersonal1);                              
+                                break;                                
+                            case 4:
+                                Persona.eliminarPersonal(listaPersonal1);
+                                break;                            
+                            case 5:
+                                miBiblioteca.mostrarTodosLibros(listaLibros1);
+                                break;                                
+                            case 6:
+                                Persona.mostrarPersonal(listaPersonal1);
+                                break;
+                            case 7:
+                                Usuario.anadirUsuario(listaUsuarios1);
+                                break;
+                            case 8:
+                                Usuario.borrarUsuario(listaUsuarios1);
+                                break;
+                            case 9:
+                                byte opcionBuscar;
+                                System.out.println("Como desea buscar usuario");
+                                System.out.println("1 buscar por nombre");
+                                System.out.println("2 buscar por apellido");
+                                System.out.println("3 buscar por NIF");
+                                opcionBuscar = sc.nextByte();
+                                sc.nextLine();
+                                switch (opcionBuscar) {
+                                    case 1:
+                                        Usuario.buscarUsuarioNombre(listaUsuarios1);
+                                        break;
+                                    case 2:
+                                        Usuario.buscarUsuarioApellido(listaUsuarios1);
+                                        break;
+                                    case 3:
+                                        Usuario.buscarUsuarioNif(listaUsuarios1);
+                                }// fin switch buscar
+                                break;
+                            case 10:
+                                Reserva.mostrarReservas(miBiblioteca);
+                                break;
+                            case 0:
+                                salirAdmin = true;
+                                break;
+                            default:
+                                System.out.println("Opciones disponibles de 0 a 10");
+                            
+                        }// fin switch opcionAdmin
 
-                case 1 -> //añadir libro
-                    Libro.anadirLibro(miBiblioteca.getListaLibros());
-                //anadirPersonalBiblioteca(listaPersonal1);  //probando anadir personal
-                //anadirUsuario(listaUsuarios1); //probando anadirUsuario
+                    } while (!salirAdmin);
+                    // salir del menu admin
 
-                case 2 -> // eliminar libro                   
-                    Libro.eliminarLibro(miBiblioteca.getListaLibros());
-                //eliminarPersonal(listaPersonal1); //probando eliminarPersonal
-                //borrarUsuario(listaUsuarios1); //probando borrarUsuario
+                    break;
+                case 2:// menu Usuario
+                    do {
+                        System.out.println("");
+                        System.out.println("    ***********USUARIO**********");
+                        System.out.println("    ************MENU************");
+                        System.out.println("    1.Mostrar todos libros");
+                        System.out.println("    2.Mostrar solo libros disponibles");
+                        System.out.println("    3.Reservar un libro");
+                        System.out.println("    4.Devolver un libro");
+                        System.out.println("    0 Volver");
+                        opcionUsuario = sc.nextByte();
+                        switch (opcionUsuario) {
+                            case 1:
+                                miBiblioteca.mostrarTodosLibros(listaLibros1);
+                                break;
+                            case 2:
+                                miBiblioteca.mostrarLibrosDispinibles(listaLibros1);
+                                break;
+                            case 3:
+                                Reserva.crearReserva(miBiblioteca);
+                                break;
+                            case 4:
+                                Reserva.borrarReserva(miBiblioteca);
+                                break;
+                            case 0:
+                                salirUsuario = true;
+                                break;
+                            default:
+                                System.out.println("Opciones disponibles de 0 a 4");
+                        }// fin switch opcionusuario
 
-                case 3 -> // buscar libro por ISBN                   
-                    Libro.buscarLibroISBN(miBiblioteca.getListaLibros());
-                //mostrarPersonal(listaPersonal1);
-
-                case 4 -> //buscar libro por titulo
-                    Libro.buscarLibroTitulo(miBiblioteca.getListaLibros());
-
-                case 5 -> // mostrar todos libros
-                    miBiblioteca.mostrarTodosLibros(miBiblioteca.getListaLibros());
-                //mostrarUsuarios(listaUsuarios1);
-
-                case 6 -> // mostrar solo disponibles libros
-                    miBiblioteca.mostrarLibrosDispinibles(miBiblioteca.getListaLibros());
-
-                case 7 ->
-                    Reserva.mostrarReservas(miBiblioteca);
-
-                case 8 ->
-                    Reserva.crearReserva(miBiblioteca);
-                    
-                case 9 ->
-                    Reserva.borrarReserva(miBiblioteca);
-
-                case 0 -> //salir
+                    } while (!salirUsuario);
+                    // fin menu Usuario
+                    break;
+                case 0:// salir
                     salir = true;
+                    break;
+                default:
+                    System.out.println("Solo numeros 1. Administrador, 2. usuario , 0 para salir");
+            }
+            
+        } while (!salir);
+        
 
-                default ->
-                    System.out.println("Las opciones disponibles del 1 a 7 ");
-
-            }//fin switch
-
-        } while (salir == false); //fin do-while
 
     }// fin main
 
